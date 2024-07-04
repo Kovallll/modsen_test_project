@@ -15,7 +15,7 @@ export const ArtNote = styled.article`
   border: 1px solid #f0f1f1;
   position: relative;
   left: 25px;
-  bottom: 60px;
+  bottom: 70px;
   display: flex;
 `;
 
@@ -43,6 +43,9 @@ export const ArtSubtitle = styled.p`
   line-height: 171%;
   color: #e0a449;
   padding-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ArtText = styled.p`
@@ -50,6 +53,9 @@ export const ArtText = styled.p`
   font-size: 15px;
   line-height: 171%;
   color: #393939;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const IconWrap = styled.div`

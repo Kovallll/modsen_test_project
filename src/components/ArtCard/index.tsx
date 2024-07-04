@@ -10,7 +10,7 @@ import {
   IconWrap,
 } from "./styles";
 import favoritesIcon from "../../assets/icons/favorite.svg";
-
+import notImage from "../../assets/icons/not_image.svg";
 export interface ArtCardProps {
   image: string;
   title: string;
@@ -19,9 +19,10 @@ export interface ArtCardProps {
 }
 
 export const ArtCard = ({ image, title, subtitle, text }: ArtCardProps) => {
+  console.log();
   return (
     <Container>
-      <ArtImage src={image}></ArtImage>
+      <ArtImage src={image.includes("null") ? notImage : image}></ArtImage>
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>

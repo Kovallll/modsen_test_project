@@ -17,12 +17,14 @@ export const Header = () => {
 
   useEffect(() => {
     setPath(location.pathname);
-  }, [path]);
+  }, [location.pathname]);
 
   return (
     <Container>
       <Content>
-        <LogoImage src={logo} alt=""></LogoImage>
+        <a href="/">
+          <LogoImage src={logo} alt=""></LogoImage>
+        </a>
         {path === "/" ? (
           <Navbar>
             <NavLink href="/favorites">
