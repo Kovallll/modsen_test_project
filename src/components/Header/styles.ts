@@ -7,7 +7,6 @@ export const Container = styled.div`
     #484848 58.63%,
     #282828 98.63%
   );
-  height: 100%;
   display: flex;
   justify-content: center;
   padding: 16px 40px;
