@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.header`
   background: linear-gradient(
     90deg,
     #343333 16.73%,
@@ -18,7 +18,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.nav`
   max-width: 1280px;
   width: 100%;
   display: flex;
