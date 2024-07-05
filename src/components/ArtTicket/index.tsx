@@ -35,7 +35,7 @@ export const ArtTicket = ({
         <ArtSubtitle>{subtitle}</ArtSubtitle>
         <ArtText>{text}</ArtText>
       </ArtInfo>
-      <FavoriteButton></FavoriteButton>
+      <FavoriteButton artId={id}></FavoriteButton>
     </Container>
   );
 };

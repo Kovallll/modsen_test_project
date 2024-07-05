@@ -21,6 +21,7 @@ export const SearchInput = styled.input`
   border: 0;
   background: rgba(57, 57, 57, 0.1);
   font-size: 24px;
+  padding: 0px 16px;
   color: rgb(241, 121, 0);
 `;
 
