@@ -9,6 +9,7 @@ export interface ArtData {
   image_id: string;
   artwork_type_title: string;
   title: string;
+  thumbnail?: { lqip: string };
   department_title: string;
 }
 

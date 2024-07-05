@@ -25,7 +25,7 @@ export const Subtitle = styled.p`
 export const TicketBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
+  gap: 32px;
   @media (max-width: 1440px) {
     grid-template-columns: 1fr 1fr;
   }

@@ -12,8 +12,8 @@ import { FavoriteButton } from "../FavoriteButton";
 export interface ArtCardProps {
   image: string;
   title: string;
-  subtitle: string;
-  text: string;
+  subtitle?: string;
+  text?: string;
 }
 
 export const ArtCard = ({ image, title, subtitle, text }: ArtCardProps) => {
