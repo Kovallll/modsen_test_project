@@ -4,23 +4,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Pagination } from "../Pagination";
 import { BASE_URL } from "../../constants";
-
-export interface ArtData {
-  image_id: string;
-  artwork_type_title: string;
-  title: string;
-  department_title: string;
-}
+import { ArtData, getArtsDataResponse } from "../../types";
 
 export const Slider = () => {
   const [artObject, setArtObject] = useState({
-    data: [],
+    data: [
+      { image_id: "", artwork_type_title: "", title: "", department_title: "" },
+    ],
     config: { iiif_url: "" },
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
   useEffect(() => {
     async function getArts() {
-      const { data } = await axios.get(
+      const { data } = await axios.get<getArtsDataResponse>(
         `${BASE_URL}/v1/artworks?page=${currentPage}&limit=3`,
       );
       setArtObject(data);

@@ -3,16 +3,20 @@ import { useState, useEffect } from "react";
 import { BASE_URL } from "../../constants";
 import { Container, Subtitle, TicketBox, Title } from "./styled";
 import { ArtTicket } from "../../components/ArtTicket";
-import { ArtData } from "../Slider";
+import { ArtData, getArtsDataResponse } from "../../types";
 
 export const ArtBoard = () => {
   const [artObject, setArtObject] = useState({
-    data: [],
+    data: [
+      { image_id: "", artwork_type_title: "", title: "", department_title: "" },
+    ],
     config: { iiif_url: "" },
   });
   useEffect(() => {
     async function getArts() {
-      const { data } = await axios.get(`${BASE_URL}/v1/artworks?limit=9`);
+      const { data } = await axios.get<getArtsDataResponse>(
+        `${BASE_URL}/v1/artworks?limit=9`,
+      );
       setArtObject(data);
       console.log(data, "Data");
     }
