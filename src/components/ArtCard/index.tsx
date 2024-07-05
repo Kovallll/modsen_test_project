@@ -11,7 +11,7 @@ import notImage from "../../assets/icons/not_image.svg";
 import { FavoriteButton } from "../FavoriteButton";
 import { useNavigate } from "react-router-dom";
 export interface ArtCardProps {
-  id: string;
+  id: number;
   image: string;
   title: string;
   subtitle?: string;
@@ -34,7 +34,7 @@ export const ArtCard = ({ id, image, title, subtitle, text }: ArtCardProps) => {
           <ArtSubtitle>{subtitle}</ArtSubtitle>
           <ArtText>{text}</ArtText>
         </ArtInfo>
-        <FavoriteButton></FavoriteButton>
+        <FavoriteButton artId={id}></FavoriteButton>
       </ArtNote>
     </Container>
   );

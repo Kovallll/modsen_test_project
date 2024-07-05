@@ -16,23 +16,6 @@ export const ImageWrap = styled.div`
   position: relative;
 `;
 
-export const FavoriteArtButton = styled.button`
-  border: 1px solid #f0f1f1;
-  border-radius: 35px;
-  padding: 17px;
-  width: 59px;
-  height: 59px;
-  background: #fff;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-`;
-
-export const FavoriteArtIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
 export const ArtImage = styled.img`
   height: 580px;
   width: 500px;

@@ -10,7 +10,7 @@ export const Slider = () => {
   const [artObject, setArtObject] = useState({
     data: [
       {
-        id: "",
+        id: 0,
         image_id: "",
         artwork_type_title: "",
         title: "",
@@ -35,7 +35,7 @@ export const Slider = () => {
   const handleClickPaginationButton = (index: number) => {
     setCurrentPage(index);
   };
-
+  console.log(artObject, "artObject");
   return (
     <Container>
       <Subtitle>Topics for you</Subtitle>

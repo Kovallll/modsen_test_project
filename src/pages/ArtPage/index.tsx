@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useLoaderData, LoaderFunctionArgs } from "react-router-dom";
+import { useLoaderData, LoaderFunctionArgs, useParams } from "react-router-dom";
 import { BASE_URL } from "../../constants";
 import {
   ArtImage,
@@ -7,8 +7,6 @@ import {
   ArtNote,
   ArtOverview,
   Container,
-  FavoriteArtButton,
-  FavoriteArtIcon,
   ImageWrap,
   InfoSubtitle,
   InfoText,
@@ -17,7 +15,7 @@ import {
   OverviewTitle,
 } from "./styled";
 import { getArtDataResponse } from "../../types";
-import favoritesIcon from "../../assets/icons/favorite.svg";
+import { FavoriteButton } from "../../components/FavoriteButton";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { data } = await axios.get<getArtDataResponse>(
@@ -28,13 +26,12 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 const ArtPage = () => {
   const { config, data } = useLoaderData() as getArtDataResponse;
-  console.log({ config, data }, "asr");
+  const { artId } = useParams() as unknown as { artId: string };
+
   return (
     <Container>
       <ImageWrap>
-        <FavoriteArtButton>
-          <FavoriteArtIcon src={favoritesIcon}></FavoriteArtIcon>
-        </FavoriteArtButton>
+        <FavoriteButton artId={+artId} isOnArtPage={true}></FavoriteButton>
         <ArtImage
           src={`${config.iiif_url}/${data.image_id}/full/843,/0/default.jpg`}
         ></ArtImage>
