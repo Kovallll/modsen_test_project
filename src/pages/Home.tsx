@@ -1,8 +1,10 @@
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+
 import { Content, Wrap, Container, HomeTitle } from "./styles";
-import { Slider } from "../components/Slider";
 import { Search } from "../components/Search";
+import { Slider } from "../containers/Slider";
+import { ArtBoard } from "../containers/ArtBoard";
 
 function Home() {
   return (
@@ -17,6 +19,7 @@ function Home() {
           </HomeTitle>
           <Search></Search>
           <Slider></Slider>
+          <ArtBoard></ArtBoard>
         </Container>
       </Content>
       <Footer></Footer>
