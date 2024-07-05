@@ -17,6 +17,7 @@ export const Slider = () => {
   const [artObject, setArtObject] = useState({
     data: [],
     config: { iiif_url: "" },
+    pagination: { total_pages: 1 },
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
   useEffect(() => {
@@ -50,6 +51,7 @@ export const Slider = () => {
         ))}
       </CardsWrap>
       <Pagination
+        totalPages={artObject.pagination.total_pages}
         currentPage={currentPage}
         onClickButton={handleClickPaginationButton}
       ></Pagination>

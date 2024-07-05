@@ -13,19 +13,23 @@ import { useState } from "react";
 export interface PaginationProps {
   currentPage: number;
   onClickButton: (index: number) => void;
+  totalPages: number;
 }
 
-export const Pagination = ({ currentPage, onClickButton }: PaginationProps) => {
+export const Pagination = ({
+  currentPage,
+  onClickButton,
+  totalPages,
+}: PaginationProps) => {
   const [xPosition, setXPosition] = useState(0);
   const [index, setIndex] = useState(0);
-  const paginationCountArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const handleClickPaginationButton = (index: number) => () => {
     onClickButton(index);
   };
 
   const handleClickNextButton = () => {
-    if (index !== 6) {
+    if (index !== totalPages - 4) {
       setXPosition(xPosition - 40);
       setIndex(index + 1);
     }
@@ -37,6 +41,8 @@ export const Pagination = ({ currentPage, onClickButton }: PaginationProps) => {
       setIndex(index - 1);
     }
   };
+  const total = Math.floor(totalPages / 100);
+  const paginationCount = [...Array(total).keys()];
   return (
     <Wrap>
       <PrevButton onClick={handleClickPrevButton}>
@@ -44,7 +50,7 @@ export const Pagination = ({ currentPage, onClickButton }: PaginationProps) => {
       </PrevButton>
       <div style={{ position: "relative", overflow: "hidden" }}>
         <Container style={{ transform: `translateX(${xPosition}px)` }}>
-          {paginationCountArray.map((number, index) => {
+          {paginationCount.map((number, index) => {
             if (index + 1 === currentPage) {
               return (
                 <PageButton
@@ -52,7 +58,7 @@ export const Pagination = ({ currentPage, onClickButton }: PaginationProps) => {
                   active
                   onClick={handleClickPaginationButton(index + 1)}
                 >
-                  {number}
+                  {number + 1}
                 </PageButton>
               );
             } else
@@ -61,7 +67,7 @@ export const Pagination = ({ currentPage, onClickButton }: PaginationProps) => {
                   key={number}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
-                  {number}
+                  {number + 1}
                 </PageButton>
               );
           })}
