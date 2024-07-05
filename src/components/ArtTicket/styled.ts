@@ -9,15 +9,20 @@ export const Container = styled.div`
   max-width: 400px;
   width: 100%;
   border: 1px solid #f0f1f1;
-  padding: 0px 8px;
+  padding: 4px 8px;
 `;
 
-export const ArtImage = styled.img`
-  object-fit: cover;
+export const ImageWrap = styled.div`
   max-height: 80px;
   height: 100%;
   max-width: 80px;
   width: 100%;
+`;
+
+export const ArtImage = styled.img`
+  object-fit: cover;
+  height: 80px;
+  width: 80px;
 `;
 
 export const ArtInfo = styled.div`
@@ -25,7 +30,7 @@ export const ArtInfo = styled.div`
   flex-direction: column;
   max-width: 220px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 0px 12px;
 `;
 
 export const ArtTitle = styled.p`

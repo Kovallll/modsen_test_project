@@ -16,9 +16,18 @@ export const Content = styled.div`
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 1280px;
   width: 100%;
+`;
+
+export const HomeTitle = styled.h1`
+  font-weight: 700;
+  font-size: 64px;
+  text-transform: capitalize;
+  text-align: center;
+  color: #393939;
 `;
