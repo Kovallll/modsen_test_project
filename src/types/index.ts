@@ -1,6 +1,7 @@
 export interface getArtsDataResponse {
   config: { iiif_url: string };
   data: ArtData[];
+  pagination: { total_pages: number };
 }
 
 export interface getArtDataResponse {
@@ -17,4 +18,5 @@ export interface ArtData {
   dimensions?: string;
   credit_line?: string;
   provenance_text?: string;
+  thumbnail?: { lqip: string };
 }

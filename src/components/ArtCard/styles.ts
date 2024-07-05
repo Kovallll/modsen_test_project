@@ -17,6 +17,7 @@ export const ArtNote = styled.article`
   left: 25px;
   bottom: 70px;
   display: flex;
+  z-index: 90;
 `;
 
 export const ArtInfo = styled.div`
