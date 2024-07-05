@@ -8,7 +8,13 @@ import { ArtData, getArtsDataResponse } from "../../types";
 export const ArtBoard = () => {
   const [artObject, setArtObject] = useState({
     data: [
-      { image_id: "", artwork_type_title: "", title: "", department_title: "" },
+      {
+        id: "",
+        image_id: "",
+        artwork_type_title: "",
+        title: "",
+        department_title: "",
+      },
     ],
     config: { iiif_url: "" },
   });
@@ -30,6 +36,7 @@ export const ArtBoard = () => {
         {artObject.data.map((art: ArtData) => (
           <ArtTicket
             key={art.image_id}
+            id={art.id}
             image={`${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`}
             text={art.artwork_type_title}
             title={art.title}

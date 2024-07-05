@@ -8,11 +8,11 @@ import {
 } from "./styled";
 import axios from "axios";
 import { ArtTicket } from "../ArtTicket";
-import { ArtData } from "../../containers/Slider";
 import { BASE_URL } from "../../constants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { debounce } from "../../utils/debounce";
+import { ArtData } from "../../types";
 
 export interface MyFormValues {
   searchValue: string;
@@ -72,6 +72,7 @@ export const Search = () => {
             searchData.data.map((art: ArtData) => (
               <ArtTicket
                 key={art.image_id}
+                id={art.id}
                 image={art?.thumbnail?.lqip ?? "null"}
                 title={art.title}
               ></ArtTicket>

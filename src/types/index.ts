@@ -10,6 +10,7 @@ export interface getArtDataResponse {
 }
 
 export interface ArtData {
+  id: string;
   image_id: string;
   artwork_type_title: string;
   title: string;

@@ -49,19 +49,19 @@ const ArtPage = () => {
           <OverviewTitle>Overview</OverviewTitle>
           <OverviewText>
             <span style={{ color: "#e0a449" }}>Artist nacionality: </span>
-            {data.place_of_origin}
+            {data.place_of_origin ?? "None"}
           </OverviewText>
           <OverviewText>
             <span style={{ color: "#e0a449" }}>Dimensions Sheet: </span>
-            {data.dimensions}
+            {data.dimensions ?? "None"}
           </OverviewText>
           <OverviewText>
             <span style={{ color: "#e0a449" }}>Credit Line: </span>
-            {data.credit_line}
+            {data.credit_line ?? "None"}
           </OverviewText>
           <OverviewText>
             <span style={{ color: "#e0a449" }}>Repository: </span>
-            {data.provenance_text}
+            {data.provenance_text ?? "None"}
           </OverviewText>
         </ArtOverview>
       </ArtNote>

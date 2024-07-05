@@ -46,6 +46,7 @@ export const ArtNote = styled.div`
 `;
 
 export const ArtInfo = styled.div`
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -55,6 +56,12 @@ export const ArtOverview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+`;
+
+export const FixedParagraph = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const InfoTitle = styled.p`
@@ -77,7 +84,8 @@ export const InfoText = styled.p`
   color: #393939;
 `;
 
-export const OverviewText = styled.p`
+export const OverviewText = styled(FixedParagraph)`
+  width: 600px;
   font-weight: 400;
   font-size: 16px;
   color: #393939;
@@ -87,7 +95,8 @@ export const OverviewText = styled.p`
   }
 `;
 
-export const OverviewTitle = styled.p`
+export const OverviewTitle = styled(FixedParagraph)`
+  width: 600px;
   font-weight: 400;
   font-size: 32px;
   color: #393939;
