@@ -7,15 +7,22 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Favorites from "./pages/Favorites";
+import Home from "./pages/Home/Home";
+import Favorites from "./pages/Favorites/Favorites";
+import ArtPage, { loader as artPageLoader } from "./pages/ArtPage";
+import Root from "./pages/Root";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/favorites" element={<Favorites></Favorites>} />
-    </>,
+    <Route path="/" element={<Root />}>
+      <Route path="/" element={<Home />} />
+      <Route
+        path="artpage/:artId"
+        element={<ArtPage />}
+        loader={artPageLoader}
+      />
+      <Route path="/favorites" element={<Favorites />} />
+    </Route>,
   ),
 );
 
