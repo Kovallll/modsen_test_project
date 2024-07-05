@@ -10,10 +10,23 @@ import {
 } from "./styled";
 import notImage from "../../assets/icons/not_image.svg";
 import { FavoriteButton } from "../FavoriteButton";
+import { useNavigate } from "react-router-dom";
 
-export const ArtTicket = ({ image, title, subtitle, text }: ArtCardProps) => {
+export const ArtTicket = ({
+  id,
+  image,
+  title,
+  subtitle,
+  text,
+}: ArtCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClickCard = () => {
+    navigate(`/artpage/${id}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClickCard}>
       <ImageWrap>
         <ArtImage src={image.includes("null") ? notImage : image}></ArtImage>
       </ImageWrap>

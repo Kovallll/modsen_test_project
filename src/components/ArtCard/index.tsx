@@ -9,17 +9,24 @@ import {
 } from "./styles";
 import notImage from "../../assets/icons/not_image.svg";
 import { FavoriteButton } from "../FavoriteButton";
+import { useNavigate } from "react-router-dom";
 export interface ArtCardProps {
+  id: string;
   image: string;
   title: string;
   subtitle?: string;
   text?: string;
 }
 
-export const ArtCard = ({ image, title, subtitle, text }: ArtCardProps) => {
-  console.log();
+export const ArtCard = ({ id, image, title, subtitle, text }: ArtCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClickCard = () => {
+    navigate(`/artpage/${id}`);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClickCard}>
       <ArtImage src={image.includes("null") ? notImage : image}></ArtImage>
       <ArtNote>
         <ArtInfo>
