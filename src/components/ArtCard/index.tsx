@@ -1,5 +1,4 @@
 import {
-  ArtIconButton,
   ArtImage,
   ArtInfo,
   ArtNote,
@@ -7,10 +6,9 @@ import {
   ArtText,
   ArtTitle,
   Container,
-  IconWrap,
 } from "./styles";
-import favoritesIcon from "../../assets/icons/favorite.svg";
 import notImage from "../../assets/icons/not_image.svg";
+import { FavoriteButton } from "../FavoriteButton";
 export interface ArtCardProps {
   image: string;
   title: string;
@@ -29,9 +27,7 @@ export const ArtCard = ({ image, title, subtitle, text }: ArtCardProps) => {
           <ArtSubtitle>{subtitle}</ArtSubtitle>
           <ArtText>{text}</ArtText>
         </ArtInfo>
-        <IconWrap>
-          <ArtIconButton src={favoritesIcon}></ArtIconButton>
-        </IconWrap>
+        <FavoriteButton></FavoriteButton>
       </ArtNote>
     </Container>
   );

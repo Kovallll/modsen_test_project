@@ -1,8 +1,9 @@
-import { ArtCard } from "../ArtCard";
+import { ArtCard } from "../../components/ArtCard";
 import { CardsWrap, Container, Subtitle, Title } from "./styled";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Pagination } from "../Pagination";
+import { BASE_URL } from "../../constants";
 
 export interface ArtData {
   image_id: string;
@@ -20,7 +21,7 @@ export const Slider = () => {
   useEffect(() => {
     async function getArts() {
       const { data } = await axios.get(
-        `https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=3`,
+        `${BASE_URL}/v1/artworks?page=${currentPage}&limit=3`,
       );
       setArtObject(data);
       console.log(data, "Data");

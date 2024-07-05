@@ -30,6 +30,7 @@ export const PageButton = styled.button<{ active?: boolean }>`
   margin-right: 10px;
   border-radius: 4px;
   border: 0;
+  cursor: pointer;
 `;
 
 export const NextButton = styled.button`
