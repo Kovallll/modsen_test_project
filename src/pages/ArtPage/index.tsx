@@ -1,5 +1,10 @@
 import axios from "axios";
-import { useLoaderData, LoaderFunctionArgs, useParams } from "react-router-dom";
+import {
+  useLoaderData,
+  LoaderFunctionArgs,
+  useParams,
+  useNavigation,
+} from "react-router-dom";
 import { BASE_URL } from "../../constants";
 import {
   ArtImage,
@@ -27,7 +32,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 const ArtPage = () => {
   const { config, data } = useLoaderData() as getArtDataResponse;
   const { artId } = useParams() as unknown as { artId: string };
-
+  const navigation = useNavigation();
+  console.log(navigation.state, "state");
+  if (navigation.state === "loading") {
+    return <h1>Loading!</h1>;
+  }
   return (
     <Container>
       <ImageWrap>
