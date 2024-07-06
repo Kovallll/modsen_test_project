@@ -41,6 +41,9 @@ export const LogoImage = styled.img`
 
 export const Navbar = styled.div`
   display: flex;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavLink = {
