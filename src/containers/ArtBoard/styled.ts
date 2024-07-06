@@ -33,6 +33,9 @@ export const Content = styled.div`
   width: 100%;
   position: relative;
   justify-content: center;
+  @media (max-width: 1400px) {
+    flex-direction: column;
+  }
 `;
 
 export const Title = styled.p`

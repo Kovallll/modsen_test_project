@@ -15,7 +15,6 @@ export const SeacrhBlock = styled.div`
 
 export const SearchInput = styled.input`
   border-radius: 16px;
-  padding: 16px;
   width: 760px;
   height: 52px;
   border: 0;
@@ -23,6 +22,30 @@ export const SearchInput = styled.input`
   font-size: 24px;
   padding: 0px 16px;
   color: rgb(241, 121, 0);
+  @media (max-width: 1000px) {
+    width: 600px;
+    height: 44px;
+    font-size: 20px;
+    padding: 0px 12px;
+  }
+  @media (max-width: 768px) {
+    width: 500px;
+    height: 38px;
+    font-size: 18px;
+    padding: 0px 8px;
+  }
+  @media (max-width: 600px) {
+    width: 440px;
+    height: 34px;
+    font-size: 16px;
+    padding: 0px 6px;
+  }
+  @media (max-width: 500px) {
+    width: 360px;
+    height: 30px;
+    font-size: 14px;
+    padding: 0px 4px;
+  }
 `;
 
 export const ListWrap = styled.div`

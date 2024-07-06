@@ -52,6 +52,7 @@ export const Navbar = styled.div<{ isActive: boolean }>`
     top: 38px;
     left: -156px;
   }
+  z-index: 100;
 `;
 
 export const NavLink = {

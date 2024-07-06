@@ -9,6 +9,11 @@ export const SelectWrap = styled.div`
   font-weight: 500;
   right: 30px;
   bottom: 28px;
+  @media (max-width: 1400px) {
+    position: static;
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
 `;
 
 export const SelectSort = styled.select`
@@ -18,4 +23,8 @@ export const SelectSort = styled.select`
   font-size: 20px;
   padding: 0px 8px;
   margin-left: 16px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    width: 220px;
+  }
 `;
