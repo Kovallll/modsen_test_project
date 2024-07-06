@@ -6,6 +6,7 @@ export const Container = styled.div`
 `;
 
 export const ArtImage = styled.img`
+  object-fit: cover;
   height: 440px;
   width: 390px;
 `;

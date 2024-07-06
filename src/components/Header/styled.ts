@@ -43,13 +43,13 @@ export const Navbar = styled.div`
   display: flex;
 `;
 
-export const NavLink = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 16px;
-  text-decoration: none;
-`;
+export const NavLink = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  paddingLeft: "16px",
+  textDecoration: "none",
+};
 
 export const NavIcon = styled.img`
   width: 24px;

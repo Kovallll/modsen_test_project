@@ -6,7 +6,7 @@ import {
   ArtText,
   ArtTitle,
   Container,
-} from "./styles";
+} from "./styled";
 import notImage from "../../assets/icons/not_image.svg";
 import { FavoriteButton } from "../FavoriteButton";
 import { useNavigate } from "react-router-dom";
