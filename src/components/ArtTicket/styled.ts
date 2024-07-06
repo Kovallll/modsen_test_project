@@ -11,6 +11,10 @@ export const Container = styled.div`
   border: 1px solid #f0f1f1;
   padding: 4px 8px;
   cursor: pointer;
+  @media (max-width: 500px) {
+    max-height: 120px;
+    max-width: 350px;
+  }
 `;
 
 export const ImageWrap = styled.div`
@@ -18,18 +22,26 @@ export const ImageWrap = styled.div`
   height: 100%;
   max-width: 80px;
   width: 100%;
+  @media (max-width: 500px) {
+    max-height: 70px;
+    max-width: 70px;
+  }
 `;
 
 export const ArtImage = styled.img`
   object-fit: cover;
   height: 80px;
   width: 80px;
+  @media (max-width: 500px) {
+    height: 70px;
+    width: 70px;
+  }
 `;
 
 export const ArtInfo = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 220px;
+  max-width: 180px;
   width: 100%;
   padding: 0px 12px;
 `;

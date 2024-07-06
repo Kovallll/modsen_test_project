@@ -5,6 +5,15 @@ export const Title = styled.h1`
   font-size: 64px;
   text-transform: capitalize;
   text-align: center;
+  @media (max-width: 1000px) {
+    font-size: 54px;
+  }
+  @media (max-width: 768px) {
+    font-size: 44px;
+  }
+  @media (max-width: 600px) {
+    font-size: 34px;
+  }
 `;
 
 export const TopTitle = styled(Title)`
@@ -19,6 +28,15 @@ export const BottomTitle = styled(Title)`
   color: #f17900;
   margin-top: 0px;
   margin-bottom: 120px;
+  @media (max-width: 1000px) {
+    margin-bottom: 100px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 80px;
+  }
+  @media (max-width: 600px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const TitleIcon = styled.img`
