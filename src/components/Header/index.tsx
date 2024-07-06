@@ -6,10 +6,10 @@ import {
   NavIcon,
   NavLink,
   NavText,
-} from "./styles";
+} from "./styled";
 import logo from "../../assets/icons/logo.svg";
 import favoritesIcon from "../../assets/icons/favorite.svg";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 export const Header = () => {
   const [path, setPath] = useState("/");
@@ -27,21 +27,21 @@ export const Header = () => {
         </a>
         {path === "/" ? (
           <Navbar>
-            <NavLink href="/favorites">
+            <Link to="/favorites" style={NavLink}>
               <NavIcon src={favoritesIcon} alt=""></NavIcon>
               <NavText>Your favorites</NavText>
-            </NavLink>
+            </Link>
           </Navbar>
         ) : (
           <Navbar>
-            <NavLink href="/">
+            <Link to="/" style={NavLink}>
               <NavIcon src={favoritesIcon} alt=""></NavIcon>
               <NavText>Home</NavText>
-            </NavLink>
-            <NavLink href="/favorites">
+            </Link>
+            <Link to="/favorites" style={NavLink}>
               <NavIcon src={favoritesIcon} alt=""></NavIcon>
               <NavText>Your favorites</NavText>
-            </NavLink>
+            </Link>
           </Navbar>
         )}
       </Content>

@@ -49,6 +49,10 @@ const ArtPage = () => {
             {data.place_of_origin ?? "None"}
           </OverviewText>
           <OverviewText>
+            <span style={{ color: "#e0a449" }}>Year: </span>
+            {data.date_start ?? "None"}
+          </OverviewText>
+          <OverviewText>
             <span style={{ color: "#e0a449" }}>Dimensions Sheet: </span>
             {data.dimensions ?? "None"}
           </OverviewText>

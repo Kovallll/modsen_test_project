@@ -3,23 +3,11 @@ import { CardsWrap, Container, Subtitle, Title } from "./styled";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Pagination } from "../Pagination";
-import { BASE_URL } from "../../constants";
+import { artInitialData, BASE_URL } from "../../constants";
 import { ArtData, getArtsDataResponse } from "../../types";
 
 export const Slider = () => {
-  const [artObject, setArtObject] = useState({
-    data: [
-      {
-        id: 0,
-        image_id: "",
-        artwork_type_title: "",
-        title: "",
-        department_title: "",
-      },
-    ],
-    config: { iiif_url: "" },
-    pagination: { total_pages: 1 },
-  });
+  const [artObject, setArtObject] = useState(artInitialData);
   const [currentPage, setCurrentPage] = useState<number>(1);
   useEffect(() => {
     async function getArts() {

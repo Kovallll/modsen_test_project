@@ -17,7 +17,7 @@ export const Container = styled.div`
   transition: transform 0.6s ease-in-out;
 `;
 
-export const PageButton = styled.button<{ active?: boolean }>`
+export const PageButton = styled.button<{ active: boolean }>`
   background-color: ${({ active }) => (active ? "#f17900" : "#fff")};
   color: ${({ active }) => (active ? "#fff" : "#000")};
   font-weight: 600;

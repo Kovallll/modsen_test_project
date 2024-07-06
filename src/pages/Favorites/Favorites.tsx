@@ -1,13 +1,7 @@
-import {
-  BottomTitle,
-  ListSubtitle,
-  ListTitle,
-  TitleIcon,
-  TopTitle,
-} from "./styled";
+import { BottomTitle, ListTitle, TitleIcon, TopTitle } from "./styled";
 import favoritesIcon from "../../assets/icons/favorite_title.svg";
 import { BASE_URL } from "../../constants";
-import { ArtTicketBox } from "../../components/ArtTicketBox";
+import { ArtBoard } from "../../containers/ArtBoard";
 const Favorites = () => {
   const favoritesData: Array<number> = JSON.parse(
     localStorage.getItem("favoritesData") ?? JSON.stringify([]),
@@ -19,12 +13,12 @@ const Favorites = () => {
       <BottomTitle>
         <TitleIcon src={favoritesIcon}></TitleIcon>Favorites
       </BottomTitle>
-      <ListSubtitle>Saved by you</ListSubtitle>
-      <ListTitle>Your favorites list</ListTitle>
       {favoritesData.length ? (
-        <ArtTicketBox
+        <ArtBoard
           response={`${BASE_URL}/v1/artworks?ids=${favoritesData.join(",")}`}
-        ></ArtTicketBox>
+          title="Your favorites list"
+          subtitle="Saved by you"
+        ></ArtBoard>
       ) : (
         <ListTitle>You don&rsquo;t have any favorite arts</ListTitle>
       )}

@@ -20,4 +20,5 @@ export interface ArtData {
   credit_line?: string;
   provenance_text?: string;
   thumbnail?: { lqip: string };
+  date_start?: number;
 }

@@ -55,7 +55,7 @@ export const Pagination = ({
               return (
                 <PageButton
                   key={number}
-                  active
+                  active={true}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}
@@ -65,6 +65,7 @@ export const Pagination = ({
               return (
                 <PageButton
                   key={number}
+                  active={false}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}

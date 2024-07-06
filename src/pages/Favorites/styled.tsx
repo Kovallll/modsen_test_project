@@ -27,12 +27,6 @@ export const TitleIcon = styled.img`
   margin-right: 16px;
 `;
 
-export const ListSubtitle = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  color: #e0a449;
-`;
-
 export const ListTitle = styled.p`
   font-weight: 400;
   font-size: 32px;
