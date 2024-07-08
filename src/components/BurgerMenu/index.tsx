@@ -10,6 +10,7 @@ import {
 } from "./styled";
 import { Link } from "react-router-dom";
 import favoritesIcon from "../../assets/icons/favorite.svg";
+import { Paths } from "../../constants";
 
 export interface BurgerMenuProps {
   path: string;
@@ -17,36 +18,29 @@ export interface BurgerMenuProps {
 
 export const BurgerMenu = ({ path }: BurgerMenuProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+
+  const handleClickBurgerMenu = () => {
+    setIsActive((prev) => !prev);
+  };
   return (
     <Container>
-      <Menu
-        onClick={() => {
-          setIsActive((prev) => !prev);
-        }}
-      >
+      <Menu onClick={handleClickBurgerMenu}>
         <Line isActive={isActive} />
         <Line isActive={isActive} />
         <Line isActive={isActive} />
       </Menu>
-      {path === "/" ? (
-        <Navbar isActive={isActive}>
-          <Link to="/favorites" style={NavLink}>
-            <NavIcon src={favoritesIcon} alt=""></NavIcon>
-            <NavText>Your favorites</NavText>
-          </Link>
-        </Navbar>
-      ) : (
-        <Navbar isActive={isActive}>
-          <Link to="/" style={NavLink}>
-            <NavIcon src={favoritesIcon} alt=""></NavIcon>
+      <Navbar isActive={isActive}>
+        {path !== Paths.Home && (
+          <Link to={Paths.Home} style={NavLink}>
+            <NavIcon src={favoritesIcon} alt="" />
             <NavText>Home</NavText>
           </Link>
-          <Link to="/favorites" style={NavLink}>
-            <NavIcon src={favoritesIcon} alt=""></NavIcon>
-            <NavText>Your favorites</NavText>
-          </Link>
-        </Navbar>
-      )}
+        )}
+        <Link to={Paths.Favorites} style={NavLink}>
+          <NavIcon src={favoritesIcon} alt="" />
+          <NavText>Your favorites</NavText>
+        </Link>
+      </Navbar>
     </Container>
   );
 };

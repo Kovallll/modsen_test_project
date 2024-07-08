@@ -9,8 +9,7 @@ import {
   ImageWrap,
 } from "./styled";
 import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteButton } from "../FavoriteButton";
-import { useNavigate } from "react-router-dom";
+import { FavoriteButton } from "../FavoriteCardButton";
 
 export const ArtTicket = ({
   id,
@@ -18,24 +17,23 @@ export const ArtTicket = ({
   title,
   subtitle,
   text,
+  onClick,
 }: ArtCardProps) => {
-  const navigate = useNavigate();
-
   const handleClickCard = () => {
-    navigate(`/artpage/${id}`);
+    onClick(id);
   };
 
   return (
     <Container onClick={handleClickCard}>
       <ImageWrap>
-        <ArtImage src={image.includes("null") ? notImage : image}></ArtImage>
+        <ArtImage src={image.includes("null") ? notImage : image} />
       </ImageWrap>
       <ArtInfo>
         <ArtTitle>{title}</ArtTitle>
         <ArtSubtitle>{subtitle}</ArtSubtitle>
         <ArtText>{text}</ArtText>
       </ArtInfo>
-      <FavoriteButton artId={id}></FavoriteButton>
+      <FavoriteButton artId={id} />
     </Container>
   );
 };

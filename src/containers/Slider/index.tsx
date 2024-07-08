@@ -1,32 +1,20 @@
 import { ArtCard } from "../../components/ArtCard";
 import { CardsWrap, Container, Subtitle, Title } from "./styled";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Pagination } from "../Pagination";
-import { artInitialData, BASE_URL } from "../../constants";
-import { ArtData, getArtsDataResponse } from "../../types";
+import { ArtData } from "../../types";
 import { SliderLoader } from "./SliderLoader";
+import { useNavigate } from "react-router-dom";
 
-export const Slider = () => {
-  const [{ data, config, pagination }, setArtObject] = useState(artInitialData);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+export interface SliderProps {
+  data: ArtData[];
+  config: { iiif_url: string };
+  isLoading: boolean;
+}
 
-  useEffect(() => {
-    setIsLoading(true);
-    async function getArts() {
-      const { data } = await axios.get<getArtsDataResponse>(
-        `${BASE_URL}/v1/artworks?page=${currentPage}&limit=3`,
-      );
-      setArtObject(data);
-      setIsLoading(false);
-      console.log(data, "Data");
-    }
-    getArts();
-  }, [currentPage]);
+export const Slider = ({ data, config, isLoading }: SliderProps) => {
+  const navigate = useNavigate();
 
-  const handleClickPaginationButton = (index: number) => {
-    setCurrentPage(index);
+  const handleClickCard = (id: number) => {
+    navigate(`/artpage/${id}`);
   };
   return (
     <>
@@ -45,14 +33,10 @@ export const Slider = () => {
                 text={art.artwork_type_title}
                 title={art.title}
                 subtitle={art.department_title}
-              ></ArtCard>
+                onClick={handleClickCard}
+              />
             ))}
           </CardsWrap>
-          <Pagination
-            totalPages={pagination.total_pages}
-            currentPage={currentPage}
-            onClickButton={handleClickPaginationButton}
-          ></Pagination>
         </Container>
       )}
     </>

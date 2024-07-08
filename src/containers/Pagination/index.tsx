@@ -46,7 +46,7 @@ export const Pagination = ({
   return (
     <Wrap>
       <PrevButton onClick={handleClickPrevButton}>
-        <ArrowIcon src={arrowPrevIcon}></ArrowIcon>
+        <ArrowIcon src={arrowPrevIcon} />
       </PrevButton>
       <div style={{ position: "relative", overflow: "hidden" }}>
         <Container style={{ transform: `translateX(${xPosition}px)` }}>
@@ -75,7 +75,7 @@ export const Pagination = ({
         </Container>
       </div>
       <NextButton onClick={handleClickNextButton}>
-        <ArrowIcon src={arrowNextIcon}></ArrowIcon>
+        <ArrowIcon src={arrowNextIcon} />
       </NextButton>
     </Wrap>
   );

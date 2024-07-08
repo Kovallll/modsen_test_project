@@ -13,3 +13,10 @@ export const artInitialData = {
   config: { iiif_url: "" },
   pagination: { total_pages: 0 },
 };
+
+export enum Paths {
+  Home = "/",
+  Favorites = "favorites",
+  ArtPage = "artpage/:artId",
+  NotFound = "/*",
+}
