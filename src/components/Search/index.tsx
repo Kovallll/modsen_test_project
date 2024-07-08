@@ -11,8 +11,10 @@ import { ArtTicket } from "../ArtTicket";
 import { BASE_URL } from "../../constants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { debounce } from "../../utils/debounce";
+import { debounce } from "../../utils";
 import { ArtData } from "../../types";
+import { SearchLoader } from "./SearchLoader";
+import { useNavigate } from "react-router-dom";
 
 export interface MyFormValues {
   searchValue: string;
@@ -27,6 +29,8 @@ const validationSchema = Yup.object({
 });
 
 export const Search = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
   const [searchData, setSearchData] = useState({
     data: [],
     config: { iiif_url: "" },
@@ -37,12 +41,13 @@ export const Search = () => {
     },
     validationSchema,
     onSubmit: ({ searchValue }) => {
-      console.log(searchValue, "searchValue");
+      setIsLoading(true);
       const getSearchData = async () => {
         const { data } = await axios.get(
           `${BASE_URL}/v1/artworks/search?q=${searchValue}&limit=5`,
         );
         setSearchData(data);
+        setIsLoading(false);
       };
       getSearchData();
     },
@@ -51,6 +56,10 @@ export const Search = () => {
   const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     formik.setFieldValue("searchValue", e.target.value, true);
     debauncedSubmit();
+  };
+
+  const handleClickCard = (id: number) => {
+    navigate(`/artpage/${id}`);
   };
   return (
     <Container>
@@ -63,22 +72,26 @@ export const Search = () => {
             onChange={(e) => handleChangeInputValue(e)}
             value={formik.values.searchValue}
             placeholder="Search art, artist, work..."
-          ></SearchInput>
+           />
         </form>
       </SeacrhBlock>
-      <ListWrap>
-        <ArtsList>
-          {formik.values.searchValue &&
-            searchData.data.map((art: ArtData) => (
+      {isLoading && formik.values.searchValue ? (
+        <SearchLoader />
+      ) : (
+        <ListWrap>
+          <ArtsList>
+            {searchData.data.map((art: ArtData) => (
               <ArtTicket
                 key={art.image_id}
                 id={art.id}
                 image={art?.thumbnail?.lqip ?? "null"}
                 title={art.title}
-              ></ArtTicket>
+                onClick={handleClickCard}
+               />
             ))}
-        </ArtsList>
-      </ListWrap>
+          </ArtsList>
+        </ListWrap>
+      )}
     </Container>
   );
 };

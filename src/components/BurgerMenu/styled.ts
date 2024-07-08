@@ -44,20 +44,19 @@ export const Navbar = styled.div<{ isActive: boolean }>`
   position: absolute;
   background-color: #484848;
   top: 45px;
-  left: -146px;
+  left: -126px;
   flex-direction: column;
-  width: 200px;
+  width: 180px;
   padding: 8px;
   @media (max-width: 425px) {
     top: 38px;
-    left: -156px;
+    left: -136px;
   }
   z-index: 100;
 `;
 
 export const NavLink = {
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
   textDecoration: "none",
   marginBottom: "8px",

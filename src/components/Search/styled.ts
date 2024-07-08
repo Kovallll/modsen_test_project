@@ -53,6 +53,7 @@ export const ListWrap = styled.div`
   justify-content: center;
   position: relative;
 `;
+
 export const ArtsList = styled.div`
   display: flex;
   flex-direction: column;

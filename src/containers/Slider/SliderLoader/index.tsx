@@ -1,4 +1,4 @@
-import { Container, Subtitle, Title, CardsWrap } from "../styled";
+import { CardsWrap, Container, Subtitle, Title } from "../styled";
 import { Card, PaginationLoader } from "./styled";
 
 export const SliderLoader = () => {

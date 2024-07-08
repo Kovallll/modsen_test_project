@@ -26,6 +26,7 @@ export const ImageWrap = styled.div`
 `;
 
 export const ArtImage = styled.img`
+  object-fit: cover;
   height: 580px;
   width: 500px;
   @media (max-width: 1200px) {
@@ -50,34 +51,31 @@ export const ArtNote = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 580px;
-  @media (max-width: 1200px) {
-    height: 550px;
-  }
-  @media (max-width: 768px) {
-    height: 520px;
-  }
-  @media (max-width: 670px) {
-    height: 480px;
-  }
 `;
 
 export const ArtInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  margin-bottom: 64px;
+  @media (max-width: 1200px) {
+    margin-bottom: 54px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 44px;
+  }
+  @media (max-width: 670px) {
+    margin-bottom: 34px;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const ArtOverview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-`;
-
-export const FixedParagraph = styled.p`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 export const InfoTitle = styled.p`
@@ -137,7 +135,7 @@ export const InfoText = styled.p`
   }
 `;
 
-export const OverviewText = styled(FixedParagraph)`
+export const OverviewText = styled.p`
   font-weight: 400;
   font-size: 16px;
   color: #393939;
@@ -159,7 +157,7 @@ export const OverviewText = styled(FixedParagraph)`
   }
 `;
 
-export const OverviewTitle = styled(FixedParagraph)`
+export const OverviewTitle = styled.p`
   font-weight: 400;
   font-size: 32px;
   color: #393939;

@@ -10,6 +10,7 @@ export const Container = styled.footer`
   @media (max-width: 425px) {
     padding: 4px 20px;
   }
+  background-color: #fff;
 `;
 
 export const Content = styled.div`

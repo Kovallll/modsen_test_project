@@ -8,33 +8,37 @@ import {
   Container,
 } from "./styled";
 import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteButton } from "../FavoriteButton";
-import { useNavigate } from "react-router-dom";
+import { FavoriteButton } from "../FavoriteCardButton";
 export interface ArtCardProps {
   id: number;
   image: string;
   title: string;
+  onClick: (id: number) => void;
   subtitle?: string;
   text?: string;
 }
 
-export const ArtCard = ({ id, image, title, subtitle, text }: ArtCardProps) => {
-  const navigate = useNavigate();
-
+export const ArtCard = ({
+  id,
+  image,
+  title,
+  subtitle,
+  text,
+  onClick,
+}: ArtCardProps) => {
   const handleClickCard = () => {
-    navigate(`/artpage/${id}`);
+    onClick(id);
   };
-
   return (
     <Container onClick={handleClickCard}>
-      <ArtImage src={image.includes("null") ? notImage : image}></ArtImage>
+      <ArtImage src={image.includes("null") ? notImage : image} />
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>
           <ArtSubtitle>{subtitle}</ArtSubtitle>
           <ArtText>{text}</ArtText>
         </ArtInfo>
-        <FavoriteButton artId={id}></FavoriteButton>
+        <FavoriteButton artId={id} />
       </ArtNote>
     </Container>
   );
