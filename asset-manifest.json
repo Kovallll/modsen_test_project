@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/modsen_test_project/static/css/main.c550b883.css",
+    "main.js": "/modsen_test_project/static/js/main.2546e817.js",
+    "static/media/footer_logo.svg": "/modsen_test_project/static/media/footer_logo.7ab5edf03fd6dd7237c36a4b50391596.svg",
+    "static/media/logo.svg": "/modsen_test_project/static/media/logo.7a0bd9dae0a0871be849b3fd9d213210.svg",
+    "static/media/modsen_logo.svg": "/modsen_test_project/static/media/modsen_logo.ec9021996aa0ae9aead6dc1dc008b66e.svg",
+    "static/media/not_image.svg": "/modsen_test_project/static/media/not_image.22c83b2c05a69b7597276a17aefaeb44.svg",
+    "index.html": "/modsen_test_project/index.html",
+    "static/media/home.svg": "/modsen_test_project/static/media/home.6b15244d46321178e817730f0ec05b33.svg",
+    "static/media/favorite_added.svg": "/modsen_test_project/static/media/favorite_added.b4771b2e21307e5244b95002585984f6.svg",
+    "static/media/favorite.svg": "/modsen_test_project/static/media/favorite.ff0339d7ed53747f9bd6b3055e8312cc.svg",
+    "static/media/favorite_title.svg": "/modsen_test_project/static/media/favorite_title.b5cc6c8776b4066788b2fa0be6619ea1.svg",
+    "static/media/prev_arrow.svg": "/modsen_test_project/static/media/prev_arrow.1e82a8d9f8f495d02a80e49f0149bdcf.svg",
+    "static/media/next_arrow.svg": "/modsen_test_project/static/media/next_arrow.473b626bc8239ddc5db20812999189c9.svg",
+    "main.c550b883.css.map": "/modsen_test_project/static/css/main.c550b883.css.map",
+    "main.2546e817.js.map": "/modsen_test_project/static/js/main.2546e817.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c550b883.css",
+    "static/js/main.2546e817.js"
+  ]
+}
