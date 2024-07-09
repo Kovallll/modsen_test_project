@@ -80,8 +80,8 @@ export const ArtOverview = styled.div`
 
 export const InfoTitle = styled.p`
   font-weight: 400;
-  font-size: 32px;
-  color: #393939;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  color: ${({ theme }) => theme.palette?.common?.black};
   margin-bottom: 32px;
   @media (max-width: 1200px) {
     font-size: 30px;
@@ -104,7 +104,7 @@ export const InfoTitle = styled.p`
 export const InfoSubtitle = styled.p`
   font-weight: 400;
   font-size: 24px;
-  color: #e0a449;
+  color: ${({ theme }) => theme.palette.primary};
   margin-bottom: 16px;
   @media (max-width: 1200px) {
     font-size: 22px;
@@ -122,8 +122,8 @@ export const InfoSubtitle = styled.p`
 
 export const InfoText = styled.p`
   font-weight: 700;
-  font-size: 16px;
-  color: #393939;
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  color: ${({ theme }) => theme.palette?.common?.black};
   @media (max-width: 1200px) {
     font-size: 15px;
   }
@@ -137,8 +137,8 @@ export const InfoText = styled.p`
 
 export const OverviewText = styled.p`
   font-weight: 400;
-  font-size: 16px;
-  color: #393939;
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  color: ${({ theme }) => theme.palette?.common?.black};
   margin-bottom: 16px;
   &:last-child {
     margin-bottom: 0px;
@@ -159,8 +159,8 @@ export const OverviewText = styled.p`
 
 export const OverviewTitle = styled.p`
   font-weight: 400;
-  font-size: 32px;
-  color: #393939;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  color: ${({ theme }) => theme.palette?.common?.black};
   margin-bottom: 32px;
   @media (max-width: 1200px) {
     font-size: 30px;
@@ -174,4 +174,9 @@ export const OverviewTitle = styled.p`
     font-size: 24px;
     margin-bottom: 20px;
   }
+`;
+
+export const FavoriteArtPageIcon = styled.img`
+  width: 24px;
+  height: 24px;
 `;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ArtTicket } from "../../components/ArtTicket";
 import { ArtData, getArtsDataResponse } from "../../types";
 import {
@@ -11,9 +11,11 @@ import {
 } from "./styled";
 import axios from "axios";
 import { Select } from "../../components/Select";
-import { artInitialData } from "../../constants";
+import { artInitialData, Paths } from "../../constants";
 import { ArtBoardLoader } from "./ArtBoardLoader";
 import { useNavigate } from "react-router-dom";
+import notImage from "../../assets/icons/not_image.svg";
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 export interface ArtBoardProps {
   title: string;
@@ -31,49 +33,43 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
   useEffect(() => {
     setIsLoading(true);
     async function getArts() {
-      const { data } = await axios.get<getArtsDataResponse>(response);
-      setArtObject(data);
-      setIsLoading(false);
+      try {
+        const { data } = await axios.get<getArtsDataResponse>(response);
+        setArtObject(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
     }
     getArts();
   }, []);
 
   useEffect(() => {
-    selectSort(selectSortData);
+    const sortedData: ArtData[] = selectSort(selectSortData);
+
+    setArtObject({ ...artObject, data: sortedData });
   }, [selectSortData]);
 
-  const selectData = [
-    { optionValue: "none", value: "None" },
-    { optionValue: "ascendingYear", value: "Ascending order year" },
-    { optionValue: "decreasingYear", value: "Decreasing order year" },
-    { optionValue: "ascendingName", value: "Ascending order name" },
-    { optionValue: "decreasingName", value: "Decreasing order name" },
-  ];
-
-  const handleClickCard = (id: number) => {
-    navigate(`/artpage/${id}`);
+  const handleClickCard = (id: string) => {
+    navigate(`${Paths.ArtPage}/${id}`);
   };
 
   const selectSort = (key: string) => {
     switch (key) {
       case "ascendingYear": {
-        sortByYear();
-        break;
+        return sortByYear();
       }
       case "decreasingYear": {
-        sortByYear(true);
-        break;
+        return sortByYear(true);
       }
       case "ascendingName": {
-        sortByName();
-        break;
+        return sortByName();
       }
       case "decreasingName": {
-        sortByName(true);
-        break;
+        return sortByName(true);
       }
       default: {
-        break;
+        return artObject.data;
       }
     }
   };
@@ -82,58 +78,74 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
     const sortedArts = artObject?.data.sort((a: ArtData, b: ArtData) => {
       return (a.date_start || Infinity) - (b?.date_start || Infinity);
     });
-    setArtObject({
-      ...artObject,
-      data: decreasing ? sortedArts.reverse() : sortedArts,
-    });
+
+    return decreasing ? sortedArts.reverse() : sortedArts;
   };
 
   const sortByName = (decreasing?: boolean) => {
     const sortedArts = artObject.data.sort((a, b) =>
       a.title.localeCompare(b.title),
     );
-    setArtObject({
-      ...artObject,
-      data: decreasing ? sortedArts.reverse() : sortedArts,
-    });
+
+    return decreasing ? sortedArts.reverse() : sortedArts;
   };
 
   const handleClickSort = (data: string) => {
     setSelectSortData(data);
   };
 
+  const getImage = (art: ArtData) => {
+    return art.image_id !== null
+      ? `${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
+      : notImage;
+  };
+
+  const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
+    useContext(FavoriteContext);
+
+  const getIsAdded = (id: string) => {
+    return favoriteCards.includes(id);
+  };
+
+  const handleClickFavoriteButton =
+    (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.stopPropagation();
+
+      if (!getIsAdded(id)) {
+        addFavoriteCards(id);
+      } else {
+        removeFavoriteCards(id);
+      }
+    };
+
+  if (isLoading) {
+    return <ArtBoardLoader />;
+  }
+
   return (
-    <>
-      {isLoading ? (
-        <ArtBoardLoader />
-      ) : (
-        <Container>
-          <Content>
-            <TextWrap>
-              <Subtitle>{subtitle}</Subtitle>
-              <Title>{title}</Title>
-            </TextWrap>
-            <Select
-              onClick={handleClickSort}
-              selectLabel="Sort by:"
-              selectData={selectData}
-            />
-          </Content>
-          <TicketBox>
-            {artObject.data.map((art: ArtData) => (
-              <ArtTicket
-                key={art.image_id}
-                id={art.id}
-                image={`${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`}
-                text={art.artwork_type_title}
-                title={art.title}
-                subtitle={art.department_title}
-                onClick={handleClickCard}
-              />
-            ))}
-          </TicketBox>
-        </Container>
-      )}
-    </>
+    <Container>
+      <Content>
+        <TextWrap>
+          <Subtitle>{subtitle}</Subtitle>
+          <Title>{title}</Title>
+        </TextWrap>
+        <Select onClick={handleClickSort} selectLabel="Sort by:" />
+      </Content>
+      <TicketBox>
+        {artObject.data.map((art: ArtData) => (
+          <ArtTicket
+            key={art.image_id}
+            id={String(art.id)}
+            image={getImage(art)}
+            text={art.artwork_type_title}
+            title={art.title}
+            subtitle={art.department_title}
+            onClick={handleClickCard}
+            onClickFavoriteButton={handleClickFavoriteButton(String(art.id))}
+            getIsAdded={getIsAdded}
+          />
+        ))}
+      </TicketBox>
+    </Container>
   );
 };

@@ -8,9 +8,10 @@ import {
   Container,
   ImageWrap,
 } from "./styled";
-import notImage from "../../assets/icons/not_image.svg";
 import { FavoriteButton } from "../FavoriteCardButton";
-
+import { ArtIconButton } from "../ArtCard/styled";
+import favoritesIcon from "../../assets/icons/favorite.svg";
+import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
 export const ArtTicket = ({
   id,
   image,
@@ -18,6 +19,8 @@ export const ArtTicket = ({
   subtitle,
   text,
   onClick,
+  onClickFavoriteButton,
+  getIsAdded,
 }: ArtCardProps) => {
   const handleClickCard = () => {
     onClick(id);
@@ -26,14 +29,23 @@ export const ArtTicket = ({
   return (
     <Container onClick={handleClickCard}>
       <ImageWrap>
-        <ArtImage src={image.includes("null") ? notImage : image} />
+        <ArtImage src={image} />
       </ImageWrap>
       <ArtInfo>
         <ArtTitle>{title}</ArtTitle>
         <ArtSubtitle>{subtitle}</ArtSubtitle>
         <ArtText>{text}</ArtText>
       </ArtInfo>
-      <FavoriteButton artId={id} />
+      <FavoriteButton
+        onClick={(e) => {
+          onClickFavoriteButton(e);
+        }}
+        icon={
+          <ArtIconButton
+            src={getIsAdded(id) ? favoritesAddedIcon : favoritesIcon}
+          />
+        }
+      />
     </Container>
   );
 };

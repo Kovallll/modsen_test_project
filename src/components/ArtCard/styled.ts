@@ -12,6 +12,10 @@ export const Container = styled.div`
     height: 380px;
   }
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ArtImage = styled.img`
@@ -43,12 +47,15 @@ export const ArtNote = styled.article`
   z-index: 90;
   @media (max-width: 1000px) {
     width: 302px;
+    bottom: 56px;
   }
   @media (max-width: 768px) {
     width: 270px;
+    bottom: 42px;
   }
   @media (max-width: 600px) {
     width: 236px;
+    bottom: 30px;
   }
 `;
 
@@ -78,7 +85,7 @@ export const ArtTitle = styled(FixedParagraph)`
   font-weight: 500;
   font-size: 17px;
   line-height: 150%;
-  color: #393939;
+  color: ${({ theme }) => theme.palette.common?.black};
   padding-bottom: 2px;
   @media (max-width: 1000px) {
     font-size: 16px;
@@ -95,7 +102,7 @@ export const ArtSubtitle = styled(FixedParagraph)`
   font-weight: 400;
   font-size: 15px;
   line-height: 171%;
-  color: #e0a449;
+  color: ${({ theme }) => theme.palette.primary};
   padding-bottom: 12px;
   @media (max-width: 1000px) {
     font-size: 14px;
@@ -112,7 +119,7 @@ export const ArtText = styled(FixedParagraph)`
   font-weight: 700;
   font-size: 15px;
   line-height: 171%;
-  color: #393939;
+  color: ${({ theme }) => theme.palette.common?.black};
   @media (max-width: 1000px) {
     font-size: 14px;
   }
@@ -121,5 +128,18 @@ export const ArtText = styled(FixedParagraph)`
   }
   @media (max-width: 600px) {
     font-size: 12px;
+  }
+`;
+
+export const ArtIconButton = styled.img`
+  width: 24px;
+  height: 24px;
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+  @media (max-width: 425px) {
+    width: 16px;
+    height: 16px;
   }
 `;

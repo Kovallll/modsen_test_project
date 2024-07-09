@@ -1,6 +1,6 @@
 import { ArtBoard } from "../../containers/ArtBoard";
 import { Search } from "../../components/Search";
-import { Title } from "./styled";
+import { Title, YellowTitle } from "./styled";
 import { BASE_URL } from "../../constants";
 import { SliderWithPagination } from "../../containers/SliderWithPagination";
 
@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Title>
-        Let&rsquo;s find some <span style={{ color: "#f17900" }}>art</span>
+        Let&rsquo;s find some <YellowTitle>art</YellowTitle>
         <br />
         here!
       </Title>

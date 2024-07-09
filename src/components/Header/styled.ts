@@ -68,7 +68,7 @@ export const NavIcon = styled.img`
 `;
 
 export const NavText = styled.p`
-  color: #ffffff;
+  color: ${({ theme }) => theme.palette?.common?.white};
   padding: 0;
   margin: 0;
   padding-left: 8px;

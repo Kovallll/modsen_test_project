@@ -9,6 +9,11 @@ export interface getArtDataResponse {
   data: ArtData;
 }
 
+export interface getSearchDataResponse {
+  data: ArtData[];
+  config: { iiif_url: string };
+}
+
 export interface ArtData {
   id: number;
   image_id: string;

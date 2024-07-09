@@ -40,13 +40,13 @@ export const Content = styled.div`
 
 export const Title = styled.p`
   font-weight: 400;
-  font-size: 32px;
-  color: #393939;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  color: ${({ theme }) => theme.palette?.common?.black};
   margin-bottom: 32px;
 `;
 
 export const Subtitle = styled.p`
   font-weight: 400;
-  font-size: 16px;
-  color: #e0a449;
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  color: ${({ theme }) => theme.palette.primary};
 `;

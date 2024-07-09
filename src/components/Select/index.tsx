@@ -1,12 +1,12 @@
+import { selectData } from "../../constants";
 import { SelectSort, SelectWrap } from "./styled";
 
 export interface SelectProps {
   onClick: (value: string) => void;
   selectLabel: string;
-  selectData: { optionValue: string; value: string }[];
 }
 
-export const Select = ({ selectLabel, selectData, onClick }: SelectProps) => {
+export const Select = ({ selectLabel, onClick }: SelectProps) => {
   return (
     <SelectWrap>
       <label htmlFor="">{selectLabel}</label>

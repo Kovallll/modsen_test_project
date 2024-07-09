@@ -10,6 +10,7 @@ import {
 } from "./styled";
 import { Link } from "react-router-dom";
 import favoritesIcon from "../../assets/icons/favorite.svg";
+import homeIcon from "../../assets/icons/home.svg";
 import { Paths } from "../../constants";
 
 export interface BurgerMenuProps {
@@ -32,12 +33,12 @@ export const BurgerMenu = ({ path }: BurgerMenuProps) => {
       <Navbar isActive={isActive}>
         {path !== Paths.Home && (
           <Link to={Paths.Home} style={NavLink}>
-            <NavIcon src={favoritesIcon} alt="" />
+            <NavIcon src={homeIcon} alt="nav_icon" />
             <NavText>Home</NavText>
           </Link>
         )}
         <Link to={Paths.Favorites} style={NavLink}>
-          <NavIcon src={favoritesIcon} alt="" />
+          <NavIcon src={favoritesIcon} alt="nav_icon" />
           <NavText>Your favorites</NavText>
         </Link>
       </Navbar>
