@@ -13,12 +13,15 @@ export const SliderWithPagination = () => {
   useEffect(() => {
     setIsLoading(true);
     async function getArts() {
-      const { data } = await axios.get<getArtsDataResponse>(
-        `${BASE_URL}/v1/artworks?page=${currentPage + 10}&limit=3`,
-      );
-      setArtObject(data);
-      setIsLoading(false);
-      console.log(data, "Data");
+      try {
+        const { data } = await axios.get<getArtsDataResponse>(
+          `${BASE_URL}/v1/artworks?page=${currentPage + 10}&limit=3`,
+        );
+        setArtObject(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
     }
     getArts();
   }, [currentPage]);
@@ -30,6 +33,7 @@ export const SliderWithPagination = () => {
     <>
       <Slider data={data} config={config} isLoading={isLoading} />
       <Pagination
+        isLoading={isLoading}
         totalPages={pagination.total_pages}
         currentPage={currentPage}
         onClickButton={handleClickPaginationButton}

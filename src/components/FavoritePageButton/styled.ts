@@ -14,8 +14,3 @@ export const FavoriteArtPageButton = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-export const FavoriteArtPageIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;

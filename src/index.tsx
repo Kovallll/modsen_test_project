@@ -18,7 +18,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={Paths.Home} element={<Root />}>
       <Route path={Paths.Home} element={<Home />} />
-      <Route path={Paths.ArtPage} element={<ArtPage />} />
+      <Route path={`${Paths.ArtPage}/:artId`} element={<ArtPage />} />
       <Route path={Paths.Favorites} element={<Favorites />} />
       <Route path={Paths.NotFound} element={<NotFound />} />
     </Route>,

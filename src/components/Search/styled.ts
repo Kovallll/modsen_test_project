@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
-export const SeacrhBlock = styled.div`
+export const SearchBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,4 +65,9 @@ export const ArtsList = styled.div`
   position: absolute;
   background-color: #fff;
   z-index: 100;
+`;
+
+export const ErrorText = styled.div`
+  position: absolute;
+  color: red;
 `;

@@ -15,6 +15,11 @@ export const Container = styled.div`
     max-height: 120px;
     max-width: 350px;
   }
+
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ImageWrap = styled.div`
@@ -56,7 +61,7 @@ export const ArtTitle = styled(FixedParagraph)`
   font-weight: 500;
   font-size: 17px;
   line-height: 150%;
-  color: #393939;
+  color: ${({ theme }) => theme.palette?.common?.black};
   padding-bottom: 2px;
 `;
 
@@ -64,7 +69,7 @@ export const ArtSubtitle = styled(FixedParagraph)`
   font-weight: 400;
   font-size: 15px;
   line-height: 171%;
-  color: #e0a449;
+  color: ${({ theme }) => theme.palette.primary};
   padding-bottom: 12px;
 `;
 
@@ -72,5 +77,5 @@ export const ArtText = styled(FixedParagraph)`
   font-weight: 700;
   font-size: 15px;
   line-height: 171%;
-  color: #393939;
+  color: ${({ theme }) => theme.palette?.common?.black};
 `;

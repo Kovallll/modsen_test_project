@@ -73,7 +73,7 @@ export const NavIcon = styled.img`
 
 export const NavText = styled.p`
   text-align: center;
-  color: #ffffff;
+  color: ${({ theme }) => theme.palette?.common?.white};
   padding: 0 8px;
   font-size: 18px;
   @media (max-width: 425px) {

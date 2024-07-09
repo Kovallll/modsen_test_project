@@ -7,6 +7,7 @@ export const Wrap = styled.div`
   width: 100%;
   @media (max-width: 1440px) {
     justify-content: center;
+    margin-bottom: 32px;
   }
 `;
 
@@ -18,8 +19,8 @@ export const Container = styled.div`
 `;
 
 export const PageButton = styled.button<{ active: boolean }>`
-  background-color: ${({ active }) => (active ? "#f17900" : "#fff")};
-  color: ${({ active }) => (active ? "#fff" : "#000")};
+  background-color: ${({ active }) => (active ? "#F17900" : "#fff")};
+  color: ${({ active }) => (active ? "#fff" : "#393939")};
   font-weight: 600;
   font-size: 18px;
   height: 30px;
