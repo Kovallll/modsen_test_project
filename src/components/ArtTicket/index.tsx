@@ -20,7 +20,7 @@ export const ArtTicket = ({
   text,
   onClick,
   onClickFavoriteButton,
-  getIsAdded,
+  isAdded,
 }: ArtCardProps) => {
   const handleClickCard = () => {
     onClick(id);
@@ -41,9 +41,7 @@ export const ArtTicket = ({
           onClickFavoriteButton(e);
         }}
         icon={
-          <ArtIconButton
-            src={getIsAdded(id) ? favoritesAddedIcon : favoritesIcon}
-          />
+          <ArtIconButton src={isAdded ? favoritesAddedIcon : favoritesIcon} />
         }
       />
     </Container>

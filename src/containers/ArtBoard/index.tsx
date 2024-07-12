@@ -27,7 +27,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [artObject, setArtObject] = useState(artInitialData);
   const [selectSortData, setSelectSortData] = useState<string>("");
-
+  const { favoriteCards, removeFavoriteCards } = useContext(FavoriteContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -100,9 +100,6 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
       : notImage;
   };
 
-  const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
-    useContext(FavoriteContext);
-
   const getIsAdded = (id: string) => {
     return favoriteCards.includes(id);
   };
@@ -111,11 +108,11 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
     (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
 
-      if (!getIsAdded(id)) {
-        addFavoriteCards(id);
-      } else {
-        removeFavoriteCards(id);
-      }
+      removeFavoriteCards(id);
+      setArtObject((prev) => ({
+        ...prev,
+        data: prev.data.filter((art) => art.id !== +id),
+      }));
     };
 
   if (isLoading) {
@@ -142,7 +139,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
             subtitle={art.department_title}
             onClick={handleClickCard}
             onClickFavoriteButton={handleClickFavoriteButton(String(art.id))}
-            getIsAdded={getIsAdded}
+            isAdded={getIsAdded(art.id.toString())}
           />
         ))}
       </TicketBox>

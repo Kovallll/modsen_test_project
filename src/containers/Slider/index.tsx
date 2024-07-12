@@ -64,7 +64,7 @@ export const Slider = ({ data, config, isLoading }: SliderProps) => {
             subtitle={art.department_title}
             onClick={handleClickCard}
             onClickFavoriteButton={handleClickFavoriteButton(String(art.id))}
-            getIsAdded={getIsAdded}
+            isAdded={getIsAdded(art.id.toString())}
           />
         ))}
       </CardsWrap>

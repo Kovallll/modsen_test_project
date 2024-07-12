@@ -115,7 +115,7 @@ export const Search = () => {
                     onClickFavoriteButton={handleClickFavoriteButton(
                       String(art.id),
                     )}
-                    getIsAdded={getIsAdded}
+                    isAdded={getIsAdded(art.id.toString())}
                   />
                 ))}
               </ArtsList>
