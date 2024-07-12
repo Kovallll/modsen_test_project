@@ -23,7 +23,7 @@ export interface ArtCardProps {
   onClickFavoriteButton: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
-  getIsAdded: (id: string) => boolean;
+  isAdded: boolean;
 }
 
 export const ArtCard = ({
@@ -34,7 +34,7 @@ export const ArtCard = ({
   text,
   onClick,
   onClickFavoriteButton,
-  getIsAdded,
+  isAdded,
 }: ArtCardProps) => {
   const handleClickCard = () => {
     onClick(id);
@@ -54,9 +54,7 @@ export const ArtCard = ({
             onClickFavoriteButton(e);
           }}
           icon={
-            <ArtIconButton
-              src={getIsAdded(id) ? favoritesAddedIcon : favoritesIcon}
-            />
+            <ArtIconButton src={isAdded ? favoritesAddedIcon : favoritesIcon} />
           }
         />
       </ArtNote>
