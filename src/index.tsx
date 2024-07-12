@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -14,7 +14,7 @@ import Root from "./pages/Root";
 import { NotFound } from "./pages/NotFound";
 import { Paths } from "./constants";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path={Paths.Home} element={<Root />}>
       <Route path={Paths.Home} element={<Home />} />
