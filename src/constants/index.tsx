@@ -1,3 +1,8 @@
+import ArtPage from "src/pages/ArtPage";
+import Favorites from "src/pages/Favorites/Favorites";
+import Home from "src/pages/Home/Home";
+import NotFound from "src/pages/NotFound";
+
 export const BASE_URL: string = "https://api.artic.edu/api";
 
 export const artInitialData = {
@@ -33,6 +38,13 @@ export enum Paths {
   ArtPage = "artpage",
   NotFound = "/*",
 }
+
+export const routes = [
+  { path: Paths.Home, element: <Home /> },
+  { path: Paths.ArtPage, element: <ArtPage /> },
+  { path: Paths.Favorites, element: <Favorites /> },
+  { path: Paths.NotFound, element: <NotFound /> },
+];
 
 export const selectData = [
   { optionValue: "none", value: "None" },

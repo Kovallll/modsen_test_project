@@ -7,11 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Paths } from "./constants";
-import ArtPage from "./pages/ArtPage";
-import Favorites from "./pages/Favorites/Favorites";
-import Home from "./pages/Home/Home";
-import { NotFound } from "./pages/NotFound";
+import { Paths, routes } from "src/constants";
 import Root from "./pages/Root";
 
 import "./index.css";
@@ -19,10 +15,9 @@ import "./index.css";
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path={Paths.Home} element={<Root />}>
-      <Route path={Paths.Home} element={<Home />} />
-      <Route path={`${Paths.ArtPage}/:artId`} element={<ArtPage />} />
-      <Route path={Paths.Favorites} element={<Favorites />} />
-      <Route path={Paths.NotFound} element={<NotFound />} />
+      {routes.map((page) => (
+        <Route path={page.path} element={page.element} />
+      ))}
     </Route>,
   ),
 );

@@ -11,11 +11,17 @@ export const Wrap = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const Box = styled.div`
+  position: relative;
+  overflow: hidden;
+`;
+
+export const Container = styled.div<{ xPosition: number }>`
   display: flex;
   align-items: center;
   width: 150px;
   transition: transform 0.6s ease-in-out;
+  transform: translateX(${({ xPosition }) => `${xPosition}px`});
 `;
 
 export const PageButton = styled.button<{ active: boolean }>`
