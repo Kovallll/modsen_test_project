@@ -1,8 +1,8 @@
-import { ArtBoard } from "../../containers/ArtBoard";
-import { Search } from "../../components/Search";
+import { Search } from "src/components/Search";
+import { BASE_URL } from "src/constants";
+import { ArtBoard } from "src/containers/ArtBoard";
+import { SliderWithPagination } from "src/containers/SliderWithPagination";
 import { Title, YellowTitle } from "./styled";
-import { BASE_URL } from "../../constants";
-import { SliderWithPagination } from "../../containers/SliderWithPagination";
 
 function Home() {
   return (

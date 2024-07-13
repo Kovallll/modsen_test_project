@@ -1,9 +1,11 @@
-import { BottomTitle, ListTitle, TitleIcon, TopTitle } from "./styled";
-import favoritesIcon from "../../assets/icons/favorite_title.svg";
-import { BASE_URL } from "../../constants";
-import { ArtBoard } from "../../containers/ArtBoard";
 import { useContext } from "react";
-import { FavoriteContext } from "../../context/FavoriteContext";
+
+import favoritesIcon from "src/assets/icons/favorite_title.svg";
+import { BASE_URL } from "src/constants";
+import { ArtBoard } from "src/containers/ArtBoard";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { BottomTitle, ListTitle, TitleIcon, TopTitle } from "./styled";
+
 const Favorites = () => {
   const favoritesContext = useContext(FavoriteContext);
 

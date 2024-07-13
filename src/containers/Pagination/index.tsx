@@ -1,3 +1,9 @@
+import { useState } from "react";
+
+import arrowNextIcon from "src/assets/icons/next_arrow.svg";
+import arrowPrevIcon from "src/assets/icons/prev_arrow.svg";
+import { paginationVisibleCount, paginationWidth } from "src/constants";
+import { PaginationLoader } from "./PaginationLoader";
 import {
   ArrowIcon,
   Container,
@@ -6,11 +12,6 @@ import {
   PrevButton,
   Wrap,
 } from "./styled";
-import arrowNextIcon from "../../assets/icons/next_arrow.svg";
-import arrowPrevIcon from "../../assets/icons/prev_arrow.svg";
-import { useState } from "react";
-import { paginationVisibleCount, paginationWidth } from "../../constants";
-import { PaginationLoader } from "./PaginationLoader";
 
 export interface PaginationProps {
   currentPage: number;

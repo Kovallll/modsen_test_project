@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import homeIcon from "src/assets/icons/home.svg";
+import { Paths } from "src/constants";
 import {
   Container,
   Line,
@@ -8,10 +13,6 @@ import {
   NavLink,
   NavText,
 } from "./styled";
-import { Link } from "react-router-dom";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import homeIcon from "../../assets/icons/home.svg";
-import { Paths } from "../../constants";
 
 export interface BurgerMenuProps {
   path: string;

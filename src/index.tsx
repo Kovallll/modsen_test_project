@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import {
   createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Favorites from "./pages/Favorites/Favorites";
-import ArtPage from "./pages/ArtPage";
-import Root from "./pages/Root";
-import { NotFound } from "./pages/NotFound";
+
 import { Paths } from "./constants";
+import ArtPage from "./pages/ArtPage";
+import Favorites from "./pages/Favorites/Favorites";
+import Home from "./pages/Home/Home";
+import { NotFound } from "./pages/NotFound";
+import Root from "./pages/Root";
+
+import "./index.css";
 
 const router = createHashRouter(
   createRoutesFromElements(

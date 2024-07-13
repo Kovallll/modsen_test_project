@@ -1,4 +1,4 @@
-import { selectData } from "../../constants";
+import { selectData } from "src/constants";
 import { SelectSort, SelectWrap } from "./styled";
 
 export interface SelectProps {

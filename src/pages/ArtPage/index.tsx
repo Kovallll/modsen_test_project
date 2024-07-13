@@ -1,6 +1,15 @@
-import axios from "axios";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BASE_URL } from "../../constants";
+import axios from "axios";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
+import notImage from "src/assets/icons/not_image.svg";
+import { FavoriteButton } from "src/components/FavoritePageButton";
+import { BASE_URL } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { getArtDataResponse } from "src/types";
+import { ArtPageLoader } from "./ArtPageLoader";
 import {
   ArtImage,
   ArtInfo,
@@ -15,15 +24,7 @@ import {
   OverviewText,
   OverviewTitle,
 } from "./styled";
-import { getArtDataResponse } from "../../types";
-import { FavoriteButton } from "../../components/FavoritePageButton";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { ArtPageLoader } from "./ArtPageLoader";
-import notImage from "../../assets/icons/not_image.svg";
 import { YellowText } from "./YellowText";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
-import { FavoriteContext } from "../../context/FavoriteContext";
 
 const ArtPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,8 +47,12 @@ const ArtPage = () => {
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const isAdded = useMemo(() => favoriteCards.includes(artId), [favoriteCards]);
+  const isAdded = useMemo(
+    () => favoriteCards.includes(artId),
+    [artId, favoriteCards],
+  );
   const overviewData = [
     {
       text: "Artist nacionality: ",
