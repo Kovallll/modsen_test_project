@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: none;
   position: relative;
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     display: flex;
   }
 `;
@@ -42,13 +42,13 @@ export const Line = styled.span<{ isActive: boolean }>`
 export const Navbar = styled.div<{ isActive: boolean }>`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
   position: absolute;
-  background-color: #484848;
+  background-color: ${({ theme }) => theme.palette?.common?.black};
   top: 45px;
   left: -126px;
   flex-direction: column;
   width: 180px;
-  padding: 8px;
-  @media (max-width: 425px) {
+  padding: ${({ theme }) => `${theme.padding.sm}`};
+  @media ${({ theme }) => theme.media.xxs} {
     top: 38px;
     left: -136px;
   }
@@ -65,7 +65,7 @@ export const NavLink = {
 export const NavIcon = styled.img`
   width: 28px;
   height: 28px;
-  @media (max-width: 425px) {
+  @media ${({ theme }) => theme.media.xxs} {
     width: 24px;
     height: 24px;
   }
@@ -74,9 +74,6 @@ export const NavIcon = styled.img`
 export const NavText = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.palette?.common?.white};
-  padding: 0 8px;
-  font-size: 18px;
-  @media (max-width: 425px) {
-    font-size: 16px;
-  }
+  padding: ${({ theme }) => `0 ${theme.padding.sm}`};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
 `;

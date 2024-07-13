@@ -6,14 +6,36 @@ declare module "styled-components" {
       common: {
         black: string;
         white: string;
+        grey: string;
+        darkGrey: string;
       };
       primary: string;
       secondary: string;
     };
     fontSizes: {
-      s: string;
-      m: string;
-      l: string;
+      xxs: string;
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+      xxl: string;
+    };
+    media: {
+      xxs: string;
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+      xxl: string;
+    };
+    padding: {
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
     };
   }
 }

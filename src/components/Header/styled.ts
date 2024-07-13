@@ -9,12 +9,9 @@ export const Container = styled.header`
   );
   display: flex;
   justify-content: center;
-  padding: 16px 40px;
-  @media (max-width: 768px) {
-    padding: 8px 30px;
-  }
-  @media (max-width: 425px) {
-    padding: 4px 20px;
+  padding: ${({ theme }) => `${theme.padding.md} ${theme.padding.lg}`};
+  @media ${({ theme }) => theme.media.md} {
+    padding: ${({ theme }) => `${theme.padding.sm} ${theme.padding.md}`};
   }
 `;
 
@@ -29,11 +26,11 @@ export const Content = styled.nav`
 export const LogoImage = styled.img`
   width: 200px;
   height: 80px;
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     width: 140px;
     height: 42px;
   }
-  @media (max-width: 425px) {
+  @media ${({ theme }) => theme.media.xxs} {
     width: 120px;
     height: 36px;
   }
@@ -41,7 +38,7 @@ export const LogoImage = styled.img`
 
 export const Navbar = styled.div`
   display: flex;
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     display: none;
   }
 `;
@@ -57,11 +54,11 @@ export const NavLink = {
 export const NavIcon = styled.img`
   width: 24px;
   height: 24px;
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     width: 20px;
     height: 20px;
   }
-  @media (max-width: 425px) {
+  @media ${({ theme }) => theme.media.xxs} {
     width: 16px;
     height: 16px;
   }
@@ -71,11 +68,6 @@ export const NavText = styled.p`
   color: ${({ theme }) => theme.palette?.common?.white};
   padding: 0;
   margin: 0;
-  padding-left: 8px;
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-  @media (max-width: 425px) {
-    font-size: 12px;
-  }
+  padding-left: ${({ theme }) => theme.padding.sm};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
 `;

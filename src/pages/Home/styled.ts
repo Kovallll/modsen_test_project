@@ -2,18 +2,15 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
   font-weight: 700;
-  font-size: ${({ theme }) => theme.fontSizes.l};
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
   text-transform: capitalize;
   text-align: center;
   color: ${({ theme }) => theme.palette?.common?.black};
-  @media (max-width: 1000px) {
-    font-size: 54px;
+  @media ${({ theme }) => theme.media.md} {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
   }
-  @media (max-width: 768px) {
-    font-size: 44px;
-  }
-  @media (max-width: 600px) {
-    font-size: 34px;
+  @media ${({ theme }) => theme.media.sm} {
+    font-size: ${({ theme }) => theme.fontSizes.lg};
   }
 `;
 
