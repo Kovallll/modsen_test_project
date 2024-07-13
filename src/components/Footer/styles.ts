@@ -3,14 +3,11 @@ import styled from "styled-components";
 export const Container = styled.footer`
   display: flex;
   justify-content: center;
-  padding: 16px 40px;
-  @media (max-width: 768px) {
-    padding: 8px 30px;
+  padding: ${({ theme }) => `${theme.padding.md} ${theme.padding.lg}`};
+  @media ${({ theme }) => theme.media.md} {
+    padding: ${({ theme }) => `${theme.padding.sm} ${theme.padding.md}`};
   }
-  @media (max-width: 425px) {
-    padding: 4px 20px;
-  }
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.palette?.common?.white};
 `;
 
 export const Content = styled.div`
@@ -24,11 +21,11 @@ export const Content = styled.div`
 export const FooterImage = styled.img`
   width: 200px;
   height: 80px;
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     width: 140px;
     height: 42px;
   }
-  @media (max-width: 425px) {
+  @media ${({ theme }) => theme.media.xxs} {
     width: 120px;
     height: 36px;
   }

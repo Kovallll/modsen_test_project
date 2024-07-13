@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   margin-bottom: 4px;
 
-  @media (max-width: 1440px) {
+  @media ${({ theme }) => theme.media.xxl} {
     justify-content: center;
   }
 `;
@@ -19,10 +19,10 @@ export const Pagination = styled.div`
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;

@@ -4,10 +4,9 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
-  @media (max-width: 1200px) {
+  padding: ${({ theme }) => `${theme.padding.xl} ${theme.padding.md}`};
+  @media ${({ theme }) => theme.media.xl} {
     flex-direction: column;
-    padding: 60px 20px;
   }
 `;
 
@@ -20,13 +19,13 @@ export const Image = styled.div`
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
-  @media (max-width: 1200px) {
+  @media ${({ theme }) => theme.media.xl} {
     margin-right: 0px;
     margin-bottom: 30px;
     width: 480px;
@@ -39,13 +38,13 @@ export const ArtNote = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 580px;
-  @media (max-width: 1200px) {
+  @media ${({ theme }) => theme.media.xl} {
     height: 550px;
   }
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     height: 520px;
   }
-  @media (max-width: 670px) {
+  @media ${({ theme }) => theme.media.sm} {
     height: 480px;
   }
 `;
@@ -75,10 +74,10 @@ export const InfoText = styled.p`
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;
@@ -94,10 +93,10 @@ export const OverviewText = styled.p`
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;

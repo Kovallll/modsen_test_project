@@ -6,19 +6,19 @@ export const Container = styled.section`
   align-items: center;
   margin: 30px 0px;
   width: 100%;
-  padding: 0 10px;
+  padding: ${({ theme }) => `0 ${theme.padding.sm}`};
 `;
 
 export const Title = styled.p`
   font-weight: 400;
-  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
   margin-bottom: 32px;
 `;
 
 export const Subtitle = styled.p`
   font-weight: 400;
-  font-size: ${({ theme }) => theme.fontSizes.s};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.palette.primary};
 `;
 
@@ -28,7 +28,7 @@ export const CardsWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
-  @media (max-width: 1440px) {
+  @media ${({ theme }) => theme.media.xxl} {
     flex-direction: column;
   }
 `;
@@ -42,10 +42,10 @@ export const Card = styled.div`
 
   @keyframes card-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;

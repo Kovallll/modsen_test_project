@@ -19,33 +19,30 @@ export const SearchInput = styled.input`
   width: 760px;
   height: 52px;
   border: 0;
-  background: rgba(57, 57, 57, 0.1);
-  font-size: 24px;
-  padding: 0px 16px;
-  color: rgb(241, 121, 0);
-  @media (max-width: 1000px) {
+  background: ${({ theme }) => theme.palette?.common?.grey};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  padding: ${({ theme }) => `0 ${theme.padding.md}`};
+  color: ${({ theme }) => theme.palette?.primary};
+  @media ${({ theme }) => theme.media.lg} {
     width: 600px;
     height: 44px;
-    font-size: 20px;
-    padding: 0px 12px;
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+    padding: ${({ theme }) => `0 ${theme.padding.md}`};
   }
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     width: 500px;
     height: 38px;
-    font-size: 18px;
-    padding: 0px 8px;
+    padding: ${({ theme }) => `0 ${theme.padding.sm}`};
   }
-  @media (max-width: 600px) {
+  @media ${({ theme }) => theme.media.sm} {
     width: 440px;
     height: 34px;
-    font-size: 16px;
-    padding: 0px 6px;
+    padding: ${({ theme }) => `0 ${theme.padding.xs}`};
   }
-  @media (max-width: 500px) {
+  @media ${({ theme }) => theme.media.xs} {
     width: 360px;
     height: 30px;
-    font-size: 14px;
-    padding: 0px 4px;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
   }
 `;
 
@@ -61,9 +58,9 @@ export const ArtsList = styled.div`
   align-items: center;
   gap: 16px;
   margin-bottom: 120px;
-  padding-bottom: 20px;
+  padding-bottom: ${({ theme }) => theme.padding.md};
   position: absolute;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.palette?.common?.white};
   z-index: 100;
 `;
 
