@@ -6,6 +6,7 @@ import { paginationVisibleCount, paginationWidth } from "src/constants";
 import { PaginationLoader } from "./PaginationLoader";
 import {
   ArrowIcon,
+  Box,
   Container,
   NextButton,
   PageButton,
@@ -55,8 +56,8 @@ export const Pagination = ({
       <PrevButton onClick={handleClickPrevButton}>
         <ArrowIcon src={arrowPrevIcon} />
       </PrevButton>
-      <div style={{ position: "relative", overflow: "hidden" }}>
-        <Container style={{ transform: `translateX(${xPosition}px)` }}>
+      <Box>
+        <Container xPosition={xPosition}>
           {paginationCount.map((number, index) => {
             if (index + 1 === currentPage) {
               return (
@@ -80,7 +81,7 @@ export const Pagination = ({
               );
           })}
         </Container>
-      </div>
+      </Box>
       <NextButton onClick={handleClickNextButton}>
         <ArrowIcon src={arrowNextIcon} />
       </NextButton>

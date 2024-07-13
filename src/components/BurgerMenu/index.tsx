@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import favoritesIcon from "src/assets/icons/favorite.svg";
 import homeIcon from "src/assets/icons/home.svg";
 import { Paths } from "src/constants";
+import { useClickOutside } from "src/hooks/use-click-outside";
 import {
   Container,
   Line,
@@ -20,13 +21,18 @@ export interface BurgerMenuProps {
 
 export const BurgerMenu = ({ path }: BurgerMenuProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const burgerRef = useRef(null);
 
   const handleClickBurgerMenu = () => {
     setIsActive((prev) => !prev);
   };
+
+  useClickOutside(burgerRef, () => {
+    setIsActive(false);
+  });
   return (
     <Container>
-      <Menu onClick={handleClickBurgerMenu}>
+      <Menu onClick={handleClickBurgerMenu} ref={burgerRef}>
         <Line isActive={isActive} />
         <Line isActive={isActive} />
         <Line isActive={isActive} />
