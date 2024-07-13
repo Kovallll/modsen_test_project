@@ -1,6 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { ArtTicket } from "../../components/ArtTicket";
-import { ArtData, getArtsDataResponse } from "../../types";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import notImage from "src/assets/icons/not_image.svg";
+import { ArtTicket } from "src/components/ArtTicket";
+import { Select } from "src/components/Select";
+import { artInitialData, Paths } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { ArtData, getArtsDataResponse } from "src/types";
+import { ArtBoardLoader } from "./ArtBoardLoader";
 import {
   Container,
   Content,
@@ -9,13 +17,6 @@ import {
   TicketBox,
   Title,
 } from "./styled";
-import axios from "axios";
-import { Select } from "../../components/Select";
-import { artInitialData, Paths } from "../../constants";
-import { ArtBoardLoader } from "./ArtBoardLoader";
-import { useNavigate } from "react-router-dom";
-import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteContext } from "../../context/FavoriteContext";
 
 export interface ArtBoardProps {
   title: string;
@@ -42,12 +43,14 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
       }
     }
     getArts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const sortedData: ArtData[] = selectSort(selectSortData);
 
     setArtObject({ ...artObject, data: sortedData });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectSortData]);
 
   const handleClickCard = (id: string) => {

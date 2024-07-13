@@ -1,12 +1,13 @@
-import { ArtCard } from "../../components/ArtCard";
-import { CardsWrap, Container, Subtitle, Title } from "./styled";
-import { ArtData } from "../../types";
-import { SliderLoader } from "./SliderLoader";
-import { useNavigate } from "react-router-dom";
-import notImage from "../../assets/icons/not_image.svg";
-import { Paths } from "../../constants";
 import { useContext } from "react";
-import { FavoriteContext } from "../../context/FavoriteContext";
+import { useNavigate } from "react-router-dom";
+
+import notImage from "src/assets/icons/not_image.svg";
+import { ArtCard } from "src/components/ArtCard";
+import { Paths } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { ArtData } from "src/types";
+import { SliderLoader } from "./SliderLoader";
+import { CardsWrap, Container, Subtitle, Title } from "./styled";
 
 export interface SliderProps {
   data: ArtData[];

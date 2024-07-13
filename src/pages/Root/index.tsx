@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
-import { Footer } from "../../components/Footer";
-import { Header } from "../../components/Header";
-import { Container, Content, Wrap } from "./styled";
-import ErrorBoundary from "../ErrorBoundary";
-import { FavoriteContextProvider } from "../../context/FavoriteContext";
 import { ThemeProvider } from "styled-components";
-import { defaultTheme as theme } from "../../theme";
+
+import ErrorBoundary from "src/components/ErrorBoundary";
+import { Footer } from "src/components/Footer";
+import { Header } from "src/components/Header";
+import { FavoriteContextProvider } from "src/context/FavoriteContext";
+import { defaultTheme as theme } from "src/theme";
+import { Container, Content, Wrap } from "./styled";
+
 function Root() {
   return (
     <ThemeProvider theme={theme}>

@@ -1,9 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { artInitialData, BASE_URL } from "../../constants";
-import { getArtsDataResponse } from "../../types";
-import { Pagination } from "../Pagination";
-import { Slider } from "../Slider";
+import axios from "axios";
+
+import { artInitialData, BASE_URL } from "src/constants";
+import { Pagination } from "src/containers/Pagination";
+import { Slider } from "src/containers/Slider";
+import { getArtsDataResponse } from "src/types";
 
 export const SliderWithPagination = () => {
   const [{ data, config, pagination }, setArtObject] = useState(artInitialData);

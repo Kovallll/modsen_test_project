@@ -1,4 +1,16 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import notImage from "src/assets/icons/not_image.svg";
+import { ArtTicket } from "src/components/ArtTicket";
+import { BASE_URL, Paths, searchInitialData } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { ArtData, getSearchDataResponse } from "src/types";
+import { debounce } from "src/utils";
+import { SearchLoader } from "./SearchLoader";
 import {
   ArtsList,
   Container,
@@ -7,17 +19,7 @@ import {
   SearchBlock,
   SearchInput,
 } from "./styled";
-import axios from "axios";
-import { ArtTicket } from "../ArtTicket";
-import { BASE_URL, Paths, searchInitialData } from "../../constants";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { debounce } from "../../utils";
-import { ArtData, getSearchDataResponse } from "../../types";
-import { SearchLoader } from "./SearchLoader";
-import { useNavigate } from "react-router-dom";
-import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteContext } from "../../context/FavoriteContext";
+
 export interface MyFormValues {
   searchValue: string;
 }
@@ -55,7 +57,7 @@ export const Search = () => {
     },
   });
 
-  const debouncedSubmit = useCallback(debounce(formik.submitForm, 1000), []);
+  const debouncedSubmit = debounce(formik.submitForm, 1000);
 
   const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     formik.setFieldValue("searchValue", e.target.value, true);

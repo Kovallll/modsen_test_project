@@ -1,3 +1,7 @@
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
+import notImage from "src/assets/icons/not_image.svg";
+import { FavoriteButton } from "src/components/FavoriteCardButton";
 import {
   ArtIconButton,
   ArtImage,
@@ -8,18 +12,14 @@ import {
   ArtTitle,
   Container,
 } from "./styled";
-import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteButton } from "../FavoriteCardButton";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
 
 export interface ArtCardProps {
   id: string;
   image: string;
   title: string;
   onClick: (id: string) => void;
-  subtitle?: string;
-  text?: string;
+  subtitle: string;
+  text: string;
   onClickFavoriteButton: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
@@ -46,8 +46,8 @@ export const ArtCard = ({
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>
-          <ArtSubtitle>{subtitle}</ArtSubtitle>
-          <ArtText>{text}</ArtText>
+          <ArtSubtitle>{subtitle ?? ""}</ArtSubtitle>
+          <ArtText>{text ?? ""}</ArtText>
         </ArtInfo>
         <FavoriteButton
           onClick={(e) => {
