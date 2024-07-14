@@ -6,8 +6,11 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
 import { Paths, routes } from "src/constants";
+import { defaultTheme as theme } from "src/theme";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Root from "./pages/Root";
 
 import "./index.css";
@@ -15,8 +18,8 @@ import "./index.css";
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path={Paths.Home} element={<Root />}>
-      {routes.map((page) => (
-        <Route path={page.path} element={page.element} />
+      {routes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
       ))}
     </Route>,
   ),
@@ -27,6 +30,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
+    </ThemeProvider>
   </React.StrictMode>,
 );

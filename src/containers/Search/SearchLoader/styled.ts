@@ -11,7 +11,7 @@ export const ArtsList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-bottom: 120px;
+  margin-bottom: ${({ theme }) => theme.margin.xxl};
   padding-bottom: ${({ theme }) => theme.padding.md};
   position: absolute;
   background-color: ${({ theme }) => theme.palette?.common?.white};

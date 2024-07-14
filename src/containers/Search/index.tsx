@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import notImage from "src/assets/icons/not_image.svg";
-import { ArtTicket } from "src/components/ArtTicket";
+import ArtTicket from "src/components/ArtTicket";
 import { BASE_URL, Paths, searchInitialData } from "src/constants";
 import { FavoriteContext } from "src/context/FavoriteContext";
 import { ArtData, getSearchDataResponse } from "src/types";
@@ -33,8 +34,12 @@ const validationSchema = Yup.object({
 
 export const Search = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const navigate = useNavigate();
   const [searchData, setSearchData] = useState(searchInitialData);
+
+  const navigate = useNavigate();
+  const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
+    useContext(FavoriteContext);
+
   const formik = useFormik<MyFormValues>({
     initialValues: {
       searchValue: "",
@@ -45,12 +50,12 @@ export const Search = () => {
       const getSearchData = async () => {
         try {
           const { data } = await axios.get<getSearchDataResponse>(
-            `${BASE_URL}/v1/artworks/search?q=${searchValue}&limit=5`,
+            `${BASE_URL}/search?q=${searchValue}&limit=5`,
           );
           setSearchData(data);
           setIsLoading(false);
         } catch (err) {
-          console.error(err);
+          toast.error("Error receiving data!");
         }
       };
       getSearchData();
@@ -64,18 +69,19 @@ export const Search = () => {
     debouncedSubmit();
   };
 
-  const handleClickCard = (id: string) => {
+  const handleClickCard = useCallback((id: string) => {
     navigate(`${Paths.ArtPage}/${id}`);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
-    useContext(FavoriteContext);
+  const getIsAdded = useCallback(
+    (id: string) => {
+      return favoriteCards.includes(id);
+    },
+    [favoriteCards],
+  );
 
-  const getIsAdded = (id: string) => {
-    return favoriteCards.includes(id);
-  };
-
-  const handleClickFavoriteButton =
+  const handleClickFavoriteButton = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
 
@@ -84,7 +90,9 @@ export const Search = () => {
       } else {
         removeFavoriteCards(id);
       }
-    };
+    },
+    [addFavoriteCards, getIsAdded, removeFavoriteCards],
+  );
 
   return (
     <Container>
@@ -109,7 +117,7 @@ export const Search = () => {
               <ArtsList>
                 {searchData.data.map((art: ArtData) => (
                   <ArtTicket
-                    key={art.image_id}
+                    key={art.id}
                     id={String(art.id)}
                     image={art?.thumbnail?.lqip ?? notImage}
                     title={art.title}

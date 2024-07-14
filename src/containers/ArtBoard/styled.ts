@@ -6,7 +6,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: ${({ theme }) => theme.margin.xl};
 `;
 
 export const TicketBox = styled.div`
@@ -42,7 +42,7 @@ export const Title = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
 `;
 
 export const Subtitle = styled.p`

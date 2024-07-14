@@ -15,9 +15,9 @@ export const Select = ({ selectLabel, onClick }: SelectProps) => {
           onClick(e.target.value);
         }}
       >
-        {selectData.map((item) => (
-          <option key={item.value} value={item.optionValue}>
-            {item.value}
+        {selectData.map(({ value, optionValue }) => (
+          <option key={value} value={optionValue}>
+            {value}
           </option>
         ))}
       </SelectSort>

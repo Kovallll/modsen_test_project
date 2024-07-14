@@ -7,7 +7,7 @@ export const Wrap = styled.div`
   width: 100%;
   @media ${({ theme }) => theme.media.xxl} {
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
   }
 `;
 
@@ -16,7 +16,9 @@ export const Box = styled.div`
   overflow: hidden;
 `;
 
-export const Container = styled.div<{ xPosition: number }>`
+export const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "xPosition",
+})<{ xPosition: number }>`
   display: flex;
   align-items: center;
   width: 150px;
@@ -24,11 +26,13 @@ export const Container = styled.div<{ xPosition: number }>`
   transform: translateX(${({ xPosition }) => `${xPosition}px`});
 `;
 
-export const PageButton = styled.button<{ active: boolean }>`
-  background-color: ${({ active, theme }) =>
-    active ? theme.palette?.secondary : theme.palette?.common?.white};
-  color: ${({ active, theme }) =>
-    active ? theme.palette?.common?.white : theme.palette?.common?.black};
+export const PageButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>`
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.palette?.secondary : theme.palette?.common?.white};
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.palette?.common?.white : theme.palette?.common?.black};
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSizes.sm};
   height: 30px;
@@ -36,7 +40,7 @@ export const PageButton = styled.button<{ active: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-right: ${({ theme }) => theme.margin.sm};
   border-radius: 4px;
   border: 0;
   cursor: pointer;
@@ -46,7 +50,7 @@ export const NextButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 16px;
+  margin-left: ${({ theme }) => theme.margin.md};
   background-color: ${({ theme }) => theme.palette?.common?.white};
   border: 0;
   cursor: pointer;
@@ -56,7 +60,7 @@ export const PrevButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 16px;
+  margin-right: ${({ theme }) => theme.margin.md};
   background-color: ${({ theme }) => theme.palette?.common?.white};
   border: 0;
   cursor: pointer;

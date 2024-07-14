@@ -1,3 +1,5 @@
+import React from "react";
+
 import favoritesIcon from "src/assets/icons/favorite.svg";
 import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
 import { ArtIconButton } from "src/components/ArtCard/styled";
@@ -25,7 +27,7 @@ export interface ArtTicketProps {
   isAdded: boolean;
 }
 
-export const ArtTicket = ({
+const ArtTicket = ({
   id,
   image,
   title,
@@ -60,3 +62,5 @@ export const ArtTicket = ({
     </Container>
   );
 };
+
+export default React.memo(ArtTicket);

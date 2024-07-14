@@ -3,7 +3,7 @@ import Favorites from "src/pages/Favorites/Favorites";
 import Home from "src/pages/Home/Home";
 import NotFound from "src/pages/NotFound";
 
-export const BASE_URL: string = "https://api.artic.edu/api";
+export const BASE_URL: string = "https://api.artic.edu/api/v1/artworks";
 
 export const artInitialData = {
   data: [
