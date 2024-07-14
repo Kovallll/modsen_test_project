@@ -1,30 +1,27 @@
 import { Outlet } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
 
-import ErrorBoundary from "src/components/ErrorBoundary";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header";
 import { FavoriteContextProvider } from "src/context/FavoriteContext";
-import { defaultTheme as theme } from "src/theme";
 import { Container, Content, Wrap } from "./styled";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function Root() {
   return (
-    <ThemeProvider theme={theme}>
-      <Wrap>
-        <Header />
-        <Content>
-          <Container>
-            <ErrorBoundary>
-              <FavoriteContextProvider>
-                <Outlet />
-              </FavoriteContextProvider>
-            </ErrorBoundary>
-          </Container>
-        </Content>
-        <Footer />
-      </Wrap>
-    </ThemeProvider>
+    <Wrap>
+      <Header />
+      <ToastContainer />
+      <Content>
+        <Container>
+          <FavoriteContextProvider>
+            <Outlet />
+          </FavoriteContextProvider>
+        </Container>
+      </Content>
+      <Footer />
+    </Wrap>
   );
 }
 

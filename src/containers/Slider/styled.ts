@@ -12,7 +12,7 @@ export const Title = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.margin.xl};
 `;
 
 export const Subtitle = styled.p`
@@ -26,7 +26,7 @@ export const CardsWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
   @media ${({ theme }) => theme.media.xxl} {
     flex-direction: column;
   }

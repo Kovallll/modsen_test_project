@@ -1,5 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 import favoritesIcon from "src/assets/icons/favorite.svg";
@@ -33,17 +34,18 @@ const ArtPage = () => {
 
   const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
     useContext(FavoriteContext);
+
   useEffect(() => {
     setIsLoading(true);
     const getData = async () => {
       try {
         const { data } = await axios.get<getArtDataResponse>(
-          `${BASE_URL}/v1/artworks/${artId}`,
+          `${BASE_URL}/${artId}`,
         );
         setArtData(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     };
     getData();
@@ -118,10 +120,10 @@ const ArtPage = () => {
         </ArtInfo>
         <ArtOverview>
           <OverviewTitle>Overview</OverviewTitle>
-          {overviewData.map((overview) => (
-            <OverviewText key={overview.text}>
-              <YellowText>{overview.text}</YellowText>
-              {overview.data}
+          {overviewData.map(({ text, data }) => (
+            <OverviewText key={text}>
+              <YellowText>{text}</YellowText>
+              {data}
             </OverviewText>
           ))}
         </ArtOverview>

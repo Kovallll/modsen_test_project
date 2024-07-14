@@ -10,8 +10,8 @@ export const SearchBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 30px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
+  margin-top: ${({ theme }) => theme.margin.lg};
 `;
 
 export const SearchInput = styled.input`
@@ -57,7 +57,7 @@ export const ArtsList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-bottom: 120px;
+  margin-bottom: ${({ theme }) => theme.margin.xxl};
   padding-bottom: ${({ theme }) => theme.padding.md};
   position: absolute;
   background-color: ${({ theme }) => theme.palette?.common?.white};

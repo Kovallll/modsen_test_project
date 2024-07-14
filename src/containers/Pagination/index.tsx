@@ -63,7 +63,7 @@ export const Pagination = ({
               return (
                 <PageButton
                   key={number}
-                  active={true}
+                  isActive={true}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}
@@ -73,7 +73,7 @@ export const Pagination = ({
               return (
                 <PageButton
                   key={number}
-                  active={false}
+                  isActive={false}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}

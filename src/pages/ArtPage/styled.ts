@@ -14,11 +14,11 @@ export const ImageWrap = styled.div`
   height: 100%;
   max-width: 500px;
   max-height: 580px;
-  margin-right: 60px;
+  margin-right: ${({ theme }) => theme.margin.xl};
   position: relative;
   @media ${({ theme }) => theme.media.xl} {
-    margin-right: 0px;
-    margin-bottom: 30px;
+    margin-right: 0;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
     max-width: 480px;
     max-height: 560px;
   }
@@ -56,18 +56,12 @@ export const ArtInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin-bottom: 64px;
-  @media ${({ theme }) => theme.media.xl} {
-    margin-bottom: 54px;
-  }
+  margin-bottom: ${({ theme }) => theme.margin.xl};
   @media ${({ theme }) => theme.media.md} {
-    margin-bottom: 44px;
-  }
-  @media ${({ theme }) => theme.media.sm} {
-    margin-bottom: 34px;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
   }
   @media ${({ theme }) => theme.media.xs} {
-    margin-bottom: 24px;
+    margin-bottom: ${({ theme }) => theme.margin.md};
   }
 `;
 
@@ -81,14 +75,13 @@ export const InfoTitle = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
   @media ${({ theme }) => theme.media.md} {
     font-size: ${({ theme }) => theme.fontSizes.md};
-    margin-bottom: 24px;
+    margin-bottom: ${({ theme }) => theme.margin.md};
   }
   @media ${({ theme }) => theme.media.sm} {
     font-size: ${({ theme }) => theme.fontSizes.sm};
-    margin-bottom: 20px;
   }
 `;
 
@@ -96,10 +89,10 @@ export const InfoSubtitle = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.md};
   color: ${({ theme }) => theme.palette.primary};
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   @media ${({ theme }) => theme.media.md} {
     font-size: ${({ theme }) => theme.fontSizes.sm};
-    margin-bottom: 10px;
+    margin-bottom: ${({ theme }) => theme.margin.sm};
   }
 `;
 
@@ -119,17 +112,16 @@ export const OverviewText = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   @media ${({ theme }) => theme.media.xl} {
     font-size: ${({ theme }) => theme.fontSizes.xs};
-    margin-bottom: 14px;
   }
   @media ${({ theme }) => theme.media.sm} {
     font-size: ${({ theme }) => theme.fontSizes.xxs};
-    margin-bottom: 8px;
+    margin-bottom: ${({ theme }) => theme.margin.sm};
   }
 `;
 
@@ -137,10 +129,10 @@ export const OverviewTitle = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
   @media ${({ theme }) => theme.media.md} {
     font-size: ${({ theme }) => theme.fontSizes.md};
-    margin-bottom: 24px;
+    margin-bottom: ${({ theme }) => theme.margin.md};
   }
 `;
 

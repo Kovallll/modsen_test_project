@@ -11,7 +11,7 @@ export const SelectWrap = styled.div`
   bottom: 28px;
   @media ${({ theme }) => theme.media.xxl} {
     position: static;
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.margin.md};
     font-size: ${({ theme }) => theme.fontSizes.sm};
   }
 `;
@@ -22,7 +22,7 @@ export const SelectSort = styled.select`
   height: 40px;
   font-size: ${({ theme }) => theme.fontSizes.sm};
   padding: ${({ theme }) => `0 ${theme.padding.sm}`};
-  margin-left: 16px;
+  margin-left: ${({ theme }) => theme.margin.md};
   @media ${({ theme }) => theme.media.md} {
     width: 220px;
   }

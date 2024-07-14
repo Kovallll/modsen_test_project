@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 import { artInitialData, BASE_URL } from "src/constants";
@@ -16,12 +17,12 @@ export const SliderWithPagination = () => {
     async function getArts() {
       try {
         const { data } = await axios.get<getArtsDataResponse>(
-          `${BASE_URL}/v1/artworks?page=${currentPage + 10}&limit=3`,
+          `${BASE_URL}?page=${currentPage + 10}&limit=3`,
         );
         setArtObject(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     }
     getArts();

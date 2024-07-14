@@ -37,5 +37,13 @@ declare module "styled-components" {
       lg: string;
       xl: string;
     };
+    margin: {
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+      xxl: string;
+    };
   }
 }

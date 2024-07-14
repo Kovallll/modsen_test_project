@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 import notImage from "src/assets/icons/not_image.svg";
-import { ArtTicket } from "src/components/ArtTicket";
+import ArtTicket from "src/components/ArtTicket";
 import { Select } from "src/components/Select";
 import { artInitialData, Paths } from "src/constants";
 import { FavoriteContext } from "src/context/FavoriteContext";
@@ -39,7 +40,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
         setArtObject(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     }
     getArts();
@@ -53,9 +54,10 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectSortData]);
 
-  const handleClickCard = (id: string) => {
+  const handleClickCard = useCallback((id: string) => {
     navigate(`${Paths.ArtPage}/${id}`);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const selectSort = (key: string) => {
     switch (key) {
@@ -97,17 +99,23 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
     setSelectSortData(data);
   };
 
-  const getImage = (art: ArtData) => {
-    return art.image_id !== null
-      ? `${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
-      : notImage;
-  };
+  const getImage = useCallback(
+    (art: ArtData) => {
+      return art.image_id !== null
+        ? `${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
+        : notImage;
+    },
+    [artObject.config.iiif_url],
+  );
 
-  const getIsAdded = (id: string) => {
-    return favoriteCards.includes(id);
-  };
+  const getIsAdded = useCallback(
+    (id: string) => {
+      return favoriteCards.includes(id);
+    },
+    [favoriteCards],
+  );
 
-  const handleClickFavoriteButton =
+  const handleClickFavoriteButton = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
 
@@ -116,7 +124,9 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
         ...prev,
         data: prev.data.filter((art) => art.id !== +id),
       }));
-    };
+    },
+    [removeFavoriteCards],
+  );
 
   if (isLoading) {
     return <ArtBoardLoader />;
@@ -134,7 +144,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
       <TicketBox>
         {artObject.data.map((art: ArtData) => (
           <ArtTicket
-            key={art.image_id}
+            key={art.id}
             id={String(art.id)}
             image={getImage(art)}
             text={art.artwork_type_title}

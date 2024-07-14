@@ -16,7 +16,9 @@ export const Menu = styled.div`
   position: relative;
 `;
 
-export const Line = styled.span<{ isActive: boolean }>`
+export const Line = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>`
   position: relative;
   background: #fff;
   width: 40px;
@@ -39,7 +41,9 @@ export const Line = styled.span<{ isActive: boolean }>`
   }
 `;
 
-export const Navbar = styled.div<{ isActive: boolean }>`
+export const Navbar = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
   position: absolute;
   background-color: ${({ theme }) => theme.palette?.common?.black};

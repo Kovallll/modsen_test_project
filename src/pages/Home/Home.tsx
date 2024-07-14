@@ -1,6 +1,6 @@
-import { Search } from "src/components/Search";
 import { BASE_URL } from "src/constants";
 import { ArtBoard } from "src/containers/ArtBoard";
+import { Search } from "src/containers/Search";
 import { SliderWithPagination } from "src/containers/SliderWithPagination";
 import { Title, YellowTitle } from "./styled";
 
@@ -15,7 +15,7 @@ function Home() {
       <Search />
       <SliderWithPagination />
       <ArtBoard
-        response={`${BASE_URL}/v1/artworks?limit=9`}
+        response={`${BASE_URL}?limit=9`}
         title="Other works for you"
         subtitle="Here some more"
       />

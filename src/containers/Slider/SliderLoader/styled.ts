@@ -4,7 +4,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0px;
+  margin: ${({ theme }) => `${theme.margin.lg} 0`};
   width: 100%;
   padding: ${({ theme }) => `0 ${theme.padding.sm}`};
 `;
@@ -13,7 +13,7 @@ export const Title = styled.p`
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.palette?.common?.black};
-  margin-bottom: 32px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
 `;
 
 export const Subtitle = styled.p`
@@ -27,7 +27,7 @@ export const CardsWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: ${({ theme }) => theme.margin.lg};
   @media ${({ theme }) => theme.media.xxl} {
     flex-direction: column;
   }
@@ -39,6 +39,7 @@ export const Card = styled.div`
   height: 500px;
   width: 390px;
   animation: card-loading 2s linear infinite alternate;
+  margin-bottom: ${({ theme }) => theme.margin.md};
 
   @keyframes card-loading {
     0% {
@@ -47,5 +48,8 @@ export const Card = styled.div`
     100% {
       background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
+  }
+  @media ${({ theme }) => theme.media.xxl} {
+    flex-direction: column;
   }
 `;

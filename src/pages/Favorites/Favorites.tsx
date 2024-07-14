@@ -18,7 +18,7 @@ const Favorites = () => {
       </BottomTitle>
       {favoritesContext.favoriteCards.length ? (
         <ArtBoard
-          response={`${BASE_URL}/v1/artworks?ids=${favoritesContext.favoriteCards.join(
+          response={`${BASE_URL}?ids=${favoritesContext.favoriteCards.join(
             ",",
           )}`}
           title="Your favorites list"

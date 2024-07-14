@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: end;
   align-items: center;
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: ${({ theme }) => theme.margin.xs};
 
   @media ${({ theme }) => theme.media.xxl} {
     justify-content: center;

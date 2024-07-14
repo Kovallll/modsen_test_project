@@ -1,3 +1,5 @@
+import React from "react";
+
 import favoritesIcon from "src/assets/icons/favorite.svg";
 import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
 import notImage from "src/assets/icons/not_image.svg";
@@ -26,7 +28,7 @@ export interface ArtCardProps {
   isAdded: boolean;
 }
 
-export const ArtCard = ({
+const ArtCard = ({
   id,
   image,
   title,
@@ -46,8 +48,8 @@ export const ArtCard = ({
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>
-          <ArtSubtitle>{subtitle ?? ""}</ArtSubtitle>
-          <ArtText>{text ?? ""}</ArtText>
+          <ArtSubtitle>{subtitle}</ArtSubtitle>
+          <ArtText>{text}</ArtText>
         </ArtInfo>
         <FavoriteButton
           onClick={(e) => {
@@ -61,3 +63,5 @@ export const ArtCard = ({
     </Container>
   );
 };
+
+export default React.memo(ArtCard);

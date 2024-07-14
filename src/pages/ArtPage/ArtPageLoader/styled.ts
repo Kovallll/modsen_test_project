@@ -13,7 +13,7 @@ export const Container = styled.section`
 export const Image = styled.div`
   width: 500px;
   height: 580px;
-  margin-right: 60px;
+  margin-right: ${({ theme }) => theme.margin.xl};
   position: relative;
   animation: art-loading 2s linear infinite alternate;
 
@@ -26,8 +26,8 @@ export const Image = styled.div`
     }
   }
   @media ${({ theme }) => theme.media.xl} {
-    margin-right: 0px;
-    margin-bottom: 30px;
+    margin-right: 0;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
     width: 480px;
     height: 560px;
   }
@@ -66,9 +66,9 @@ export const ArtOverview = styled.div`
 export const InfoText = styled.p`
   width: 300px;
   height: 12px;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   animation: art-loading 2s linear infinite alternate;
 
@@ -85,9 +85,9 @@ export const InfoText = styled.p`
 export const OverviewText = styled.p`
   width: 300px;
   height: 6px;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   animation: art-loading 2s linear infinite alternate;
 
