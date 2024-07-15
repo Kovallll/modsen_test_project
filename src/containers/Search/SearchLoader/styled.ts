@@ -11,10 +11,10 @@ export const ArtsList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-bottom: 120px;
-  padding-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.margin.xxl};
+  padding-bottom: ${({ theme }) => theme.padding.md};
   position: absolute;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.palette?.common?.white};
   z-index: 100;
 `;
 
@@ -25,10 +25,10 @@ export const Art = styled.div`
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;

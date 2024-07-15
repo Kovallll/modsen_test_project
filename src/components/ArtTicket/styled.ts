@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+
+const baseShadow = `
+  box-shadow: 1px 2px 6px -2px #777;
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -9,9 +13,10 @@ export const Container = styled.div`
   max-width: 400px;
   width: 100%;
   border: 1px solid #f0f1f1;
-  padding: 4px 8px;
+  padding: ${({ theme }) => `${theme.padding.xs} ${theme.padding.sm}`};
   cursor: pointer;
-  @media (max-width: 500px) {
+  ${baseShadow}
+  @media ${({ theme }) => theme.media.xs} {
     max-height: 120px;
     max-width: 350px;
   }
@@ -27,7 +32,7 @@ export const ImageWrap = styled.div`
   height: 100%;
   max-width: 80px;
   width: 100%;
-  @media (max-width: 500px) {
+  @media ${({ theme }) => theme.media.xs} {
     max-height: 70px;
     max-width: 70px;
   }
@@ -37,7 +42,7 @@ export const ArtImage = styled.img`
   object-fit: cover;
   height: 80px;
   width: 80px;
-  @media (max-width: 500px) {
+  @media ${({ theme }) => theme.media.xs} {
     height: 70px;
     width: 70px;
   }
@@ -48,7 +53,7 @@ export const ArtInfo = styled.div`
   flex-direction: column;
   max-width: 180px;
   width: 100%;
-  padding: 0px 12px;
+  padding: ${({ theme }) => `0 ${theme.padding.md}`};
 `;
 
 export const FixedParagraph = styled.p`
@@ -59,23 +64,23 @@ export const FixedParagraph = styled.p`
 
 export const ArtTitle = styled(FixedParagraph)`
   font-weight: 500;
-  font-size: 17px;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   line-height: 150%;
   color: ${({ theme }) => theme.palette?.common?.black};
-  padding-bottom: 2px;
+  padding-bottom: ${({ theme }) => `${theme.padding.xs}`};
 `;
 
 export const ArtSubtitle = styled(FixedParagraph)`
   font-weight: 400;
-  font-size: 15px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 171%;
   color: ${({ theme }) => theme.palette.primary};
-  padding-bottom: 12px;
+  padding-bottom: ${({ theme }) => `${theme.padding.md}`};
 `;
 
 export const ArtText = styled(FixedParagraph)`
   font-weight: 700;
-  font-size: 15px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 171%;
   color: ${({ theme }) => theme.palette?.common?.black};
 `;

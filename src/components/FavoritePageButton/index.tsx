@@ -5,7 +5,7 @@ export interface FavoriteButtonProps {
   onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export const FavoriteButton = ({ onClick, icon }: FavoriteButtonProps) => {
+export const FavoritePageButton = ({ onClick, icon }: FavoriteButtonProps) => {
   return (
     <FavoriteArtPageButton onClick={onClick}>{icon}</FavoriteArtPageButton>
   );

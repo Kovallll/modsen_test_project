@@ -1,11 +1,14 @@
+import { useContext } from "react";
+
+import favoritesIcon from "src/assets/icons/favorite_title.svg";
+import { BASE_URL } from "src/constants";
+import { ArtBoard } from "src/containers/ArtBoard";
+import { FavoriteContext } from "src/context/FavoriteContext";
 import { BottomTitle, ListTitle, TitleIcon, TopTitle } from "./styled";
-import favoritesIcon from "../../assets/icons/favorite_title.svg";
-import { BASE_URL } from "../../constants";
-import { ArtBoard } from "../../containers/ArtBoard";
+
 const Favorites = () => {
-  const favoritesData: Array<number> = JSON.parse(
-    localStorage.getItem("favoritesData") ?? JSON.stringify([]),
-  );
+  const favoritesContext = useContext(FavoriteContext);
+
   return (
     <>
       <TopTitle>Here are your</TopTitle>
@@ -13,9 +16,11 @@ const Favorites = () => {
         <TitleIcon src={favoritesIcon} />
         Favorites
       </BottomTitle>
-      {favoritesData.length ? (
+      {favoritesContext.favoriteCards.length ? (
         <ArtBoard
-          response={`${BASE_URL}/v1/artworks?ids=${favoritesData.join(",")}`}
+          response={`${BASE_URL}?ids=${favoritesContext.favoriteCards.join(
+            ",",
+          )}`}
           title="Your favorites list"
           subtitle="Saved by you"
         />

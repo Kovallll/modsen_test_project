@@ -1,9 +1,11 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { artInitialData, BASE_URL } from "../../constants";
-import { getArtsDataResponse } from "../../types";
-import { Pagination } from "../Pagination";
-import { Slider } from "../Slider";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+import { artInitialData, BASE_URL } from "src/constants";
+import { Pagination } from "src/containers/Pagination";
+import { Slider } from "src/containers/Slider";
+import { getArtsDataResponse } from "src/types";
 
 export const SliderWithPagination = () => {
   const [{ data, config, pagination }, setArtObject] = useState(artInitialData);
@@ -15,12 +17,12 @@ export const SliderWithPagination = () => {
     async function getArts() {
       try {
         const { data } = await axios.get<getArtsDataResponse>(
-          `${BASE_URL}/v1/artworks?page=${currentPage + 10}&limit=3`,
+          `${BASE_URL}?page=${currentPage + 10}&limit=3`,
         );
         setArtObject(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     }
     getArts();

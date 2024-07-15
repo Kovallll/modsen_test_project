@@ -4,31 +4,30 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
-  @media (max-width: 1200px) {
+  padding: ${({ theme }) => `${theme.padding.xl} ${theme.padding.md}`};
+  @media ${({ theme }) => theme.media.xl} {
     flex-direction: column;
-    padding: 60px 20px;
   }
 `;
 
 export const Image = styled.div`
   width: 500px;
   height: 580px;
-  margin-right: 60px;
+  margin-right: ${({ theme }) => theme.margin.xl};
   position: relative;
   animation: art-loading 2s linear infinite alternate;
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
-  @media (max-width: 1200px) {
-    margin-right: 0px;
-    margin-bottom: 30px;
+  @media ${({ theme }) => theme.media.xl} {
+    margin-right: 0;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
     width: 480px;
     height: 560px;
   }
@@ -39,13 +38,13 @@ export const ArtNote = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 580px;
-  @media (max-width: 1200px) {
+  @media ${({ theme }) => theme.media.xl} {
     height: 550px;
   }
-  @media (max-width: 768px) {
+  @media ${({ theme }) => theme.media.md} {
     height: 520px;
   }
-  @media (max-width: 670px) {
+  @media ${({ theme }) => theme.media.sm} {
     height: 480px;
   }
 `;
@@ -67,18 +66,18 @@ export const ArtOverview = styled.div`
 export const InfoText = styled.p`
   width: 300px;
   height: 12px;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   animation: art-loading 2s linear infinite alternate;
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;
@@ -86,18 +85,18 @@ export const InfoText = styled.p`
 export const OverviewText = styled.p`
   width: 300px;
   height: 6px;
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.margin.md};
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   animation: art-loading 2s linear infinite alternate;
 
   @keyframes art-loading {
     0% {
-      background-color: rgba(57, 57, 57, 0.1);
+      background-color: ${({ theme }) => theme.palette?.common?.grey};
     }
     100% {
-      background-color: rgba(57, 57, 57, 0.4);
+      background-color: ${({ theme }) => theme.palette?.common?.darkGrey};
     }
   }
 `;

@@ -5,30 +5,42 @@ export const Wrap = styled.div`
   align-items: center;
   justify-content: end;
   width: 100%;
-  @media (max-width: 1440px) {
+  @media ${({ theme }) => theme.media.xxl} {
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: ${({ theme }) => theme.margin.lg};
   }
 `;
 
-export const Container = styled.div`
+export const Box = styled.div`
+  position: relative;
+  overflow: hidden;
+`;
+
+export const Container = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "xPosition",
+})<{ xPosition: number }>`
   display: flex;
   align-items: center;
   width: 150px;
   transition: transform 0.6s ease-in-out;
+  transform: translateX(${({ xPosition }) => `${xPosition}px`});
 `;
 
-export const PageButton = styled.button<{ active: boolean }>`
-  background-color: ${({ active }) => (active ? "#F17900" : "#fff")};
-  color: ${({ active }) => (active ? "#fff" : "#393939")};
+export const PageButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>`
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.palette?.secondary : theme.palette?.common?.white};
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.palette?.common?.white : theme.palette?.common?.black};
   font-weight: 600;
-  font-size: 18px;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   height: 30px;
   min-width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-right: ${({ theme }) => theme.margin.sm};
   border-radius: 4px;
   border: 0;
   cursor: pointer;
@@ -38,8 +50,8 @@ export const NextButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 16px;
-  background-color: #fff;
+  margin-left: ${({ theme }) => theme.margin.md};
+  background-color: ${({ theme }) => theme.palette?.common?.white};
   border: 0;
   cursor: pointer;
 `;
@@ -48,8 +60,8 @@ export const PrevButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 16px;
-  background-color: #fff;
+  margin-right: ${({ theme }) => theme.margin.md};
+  background-color: ${({ theme }) => theme.palette?.common?.white};
   border: 0;
   cursor: pointer;
 `;

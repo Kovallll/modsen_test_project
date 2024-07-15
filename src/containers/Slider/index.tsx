@@ -1,12 +1,13 @@
-import { ArtCard } from "../../components/ArtCard";
-import { CardsWrap, Container, Subtitle, Title } from "./styled";
-import { ArtData } from "../../types";
-import { SliderLoader } from "./SliderLoader";
+import { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import notImage from "../../assets/icons/not_image.svg";
-import { Paths } from "../../constants";
-import { useContext } from "react";
-import { FavoriteContext } from "../../context/FavoriteContext";
+
+import notImage from "src/assets/icons/not_image.svg";
+import ArtCard from "src/components/ArtCard";
+import { Paths } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { ArtData } from "src/types";
+import { SliderLoader } from "./SliderLoader";
+import { CardsWrap, Container, Subtitle, Title } from "./styled";
 
 export interface SliderProps {
   data: ArtData[];
@@ -17,24 +18,31 @@ export interface SliderProps {
 export const Slider = ({ data, config, isLoading }: SliderProps) => {
   const navigate = useNavigate();
 
-  const handleClickCard = (id: string) => {
-    navigate(`${Paths.ArtPage}/${id}`);
-  };
-
-  const getImage = (art: ArtData) => {
-    return art.image_id !== null
-      ? `${config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
-      : notImage;
-  };
-
   const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
     useContext(FavoriteContext);
 
-  const getIsAdded = (id: string) => {
-    return favoriteCards.includes(id);
-  };
+  const handleClickCard = useCallback((id: string) => {
+    navigate(`${Paths.ArtPage}/${id}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleClickFavoriteButton =
+  const getImage = useCallback(
+    (art: ArtData) => {
+      return art.image_id !== null
+        ? `${config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
+        : notImage;
+    },
+    [config.iiif_url],
+  );
+
+  const getIsAdded = useCallback(
+    (id: string) => {
+      return favoriteCards.includes(id);
+    },
+    [favoriteCards],
+  );
+
+  const handleClickFavoriteButton = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
 
@@ -43,7 +51,9 @@ export const Slider = ({ data, config, isLoading }: SliderProps) => {
       } else {
         removeFavoriteCards(id);
       }
-    };
+    },
+    [addFavoriteCards, getIsAdded, removeFavoriteCards],
+  );
 
   if (isLoading) {
     return <SliderLoader />;
@@ -56,7 +66,7 @@ export const Slider = ({ data, config, isLoading }: SliderProps) => {
       <CardsWrap>
         {data.map((art: ArtData) => (
           <ArtCard
-            key={art.image_id}
+            key={art.id}
             id={String(art.id)}
             image={getImage(art)}
             text={art.artwork_type_title}
@@ -64,7 +74,7 @@ export const Slider = ({ data, config, isLoading }: SliderProps) => {
             subtitle={art.department_title}
             onClick={handleClickCard}
             onClickFavoriteButton={handleClickFavoriteButton(String(art.id))}
-            getIsAdded={getIsAdded}
+            isAdded={getIsAdded(art.id.toString())}
           />
         ))}
       </CardsWrap>

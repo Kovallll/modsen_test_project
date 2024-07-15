@@ -1,3 +1,9 @@
+import React from "react";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
+import notImage from "src/assets/icons/not_image.svg";
+import { FavoriteCardButton } from "src/components/FavoriteCardButton";
 import {
   ArtIconButton,
   ArtImage,
@@ -8,25 +14,21 @@ import {
   ArtTitle,
   Container,
 } from "./styled";
-import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteButton } from "../FavoriteCardButton";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
 
 export interface ArtCardProps {
   id: string;
   image: string;
   title: string;
   onClick: (id: string) => void;
-  subtitle?: string;
-  text?: string;
+  subtitle: string;
+  text: string;
   onClickFavoriteButton: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
-  getIsAdded: (id: string) => boolean;
+  isAdded: boolean;
 }
 
-export const ArtCard = ({
+const ArtCard = ({
   id,
   image,
   title,
@@ -34,7 +36,7 @@ export const ArtCard = ({
   text,
   onClick,
   onClickFavoriteButton,
-  getIsAdded,
+  isAdded,
 }: ArtCardProps) => {
   const handleClickCard = () => {
     onClick(id);
@@ -42,20 +44,21 @@ export const ArtCard = ({
 
   return (
     <Container onClick={handleClickCard}>
-      <ArtImage src={image.includes("null") ? notImage : image} />
+      <ArtImage src={image.includes("null") ? notImage : image} alt="image" />
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>
           <ArtSubtitle>{subtitle}</ArtSubtitle>
           <ArtText>{text}</ArtText>
         </ArtInfo>
-        <FavoriteButton
+        <FavoriteCardButton
           onClick={(e) => {
             onClickFavoriteButton(e);
           }}
           icon={
             <ArtIconButton
-              src={getIsAdded(id) ? favoritesAddedIcon : favoritesIcon}
+              src={isAdded ? favoritesAddedIcon : favoritesIcon}
+              alt="icon"
             />
           }
         />
@@ -63,3 +66,5 @@ export const ArtCard = ({
     </Container>
   );
 };
+
+export default React.memo(ArtCard);

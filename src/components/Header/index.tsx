@@ -1,3 +1,11 @@
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import homeIcon from "src/assets/icons/home.svg";
+import logo from "src/assets/icons/logo.svg";
+import { BurgerMenu } from "src/components/BurgerMenu";
+import { Paths } from "src/constants";
 import {
   Container,
   Content,
@@ -7,13 +15,7 @@ import {
   NavLink,
   NavText,
 } from "./styled";
-import logo from "../../assets/icons/logo.svg";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import homeIcon from "../../assets/icons/home.svg";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { BurgerMenu } from "../BurgerMenu";
-import { Paths } from "../../constants";
+
 export const Header = () => {
   const [path, setPath] = useState<string>(Paths.Home);
   const location = useLocation();

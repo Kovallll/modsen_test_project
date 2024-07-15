@@ -1,4 +1,9 @@
-import { ArtCardProps } from "../ArtCard";
+import React from "react";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
+import { ArtIconButton } from "src/components/ArtCard/styled";
+import { FavoriteCardButton } from "src/components/FavoriteCardButton";
 import {
   ArtImage,
   ArtInfo,
@@ -8,11 +13,21 @@ import {
   Container,
   ImageWrap,
 } from "./styled";
-import { FavoriteButton } from "../FavoriteCardButton";
-import { ArtIconButton } from "../ArtCard/styled";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
-export const ArtTicket = ({
+
+export interface ArtTicketProps {
+  id: string;
+  image: string;
+  title: string;
+  onClick: (id: string) => void;
+  subtitle?: string;
+  text?: string;
+  onClickFavoriteButton: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => void;
+  isAdded: boolean;
+}
+
+const ArtTicket = ({
   id,
   image,
   title,
@@ -20,8 +35,8 @@ export const ArtTicket = ({
   text,
   onClick,
   onClickFavoriteButton,
-  getIsAdded,
-}: ArtCardProps) => {
+  isAdded,
+}: ArtTicketProps) => {
   const handleClickCard = () => {
     onClick(id);
   };
@@ -29,23 +44,26 @@ export const ArtTicket = ({
   return (
     <Container onClick={handleClickCard}>
       <ImageWrap>
-        <ArtImage src={image} />
+        <ArtImage src={image} alt="image" />
       </ImageWrap>
       <ArtInfo>
         <ArtTitle>{title}</ArtTitle>
-        <ArtSubtitle>{subtitle}</ArtSubtitle>
-        <ArtText>{text}</ArtText>
+        <ArtSubtitle>{subtitle ?? ""}</ArtSubtitle>
+        <ArtText>{text ?? ""}</ArtText>
       </ArtInfo>
-      <FavoriteButton
+      <FavoriteCardButton
         onClick={(e) => {
           onClickFavoriteButton(e);
         }}
         icon={
           <ArtIconButton
-            src={getIsAdded(id) ? favoritesAddedIcon : favoritesIcon}
+            src={isAdded ? favoritesAddedIcon : favoritesIcon}
+            alt="icon"
           />
         }
       />
     </Container>
   );
 };
+
+export default React.memo(ArtTicket);

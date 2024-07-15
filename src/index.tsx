@@ -1,26 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Favorites from "./pages/Favorites/Favorites";
-import ArtPage from "./pages/ArtPage";
-import Root from "./pages/Root";
-import { NotFound } from "./pages/NotFound";
-import { Paths } from "./constants";
+import { ThemeProvider } from "styled-components";
 
-const router = createBrowserRouter(
+import { Paths, routes } from "src/constants";
+import { defaultTheme as theme } from "src/theme";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Root from "./pages/Root";
+
+import "./index.css";
+
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path={Paths.Home} element={<Root />}>
-      <Route path={Paths.Home} element={<Home />} />
-      <Route path={`${Paths.ArtPage}/:artId`} element={<ArtPage />} />
-      <Route path={Paths.Favorites} element={<Favorites />} />
-      <Route path={Paths.NotFound} element={<NotFound />} />
+      {routes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
     </Route>,
   ),
 );
@@ -30,6 +30,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
+    </ThemeProvider>
   </React.StrictMode>,
 );

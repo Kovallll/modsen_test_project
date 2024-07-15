@@ -1,6 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { ArtTicket } from "../../components/ArtTicket";
-import { ArtData, getArtsDataResponse } from "../../types";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+import notImage from "src/assets/icons/not_image.svg";
+import ArtTicket from "src/components/ArtTicket";
+import { Select } from "src/components/Select";
+import { artInitialData, Paths } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { ArtData, getArtsDataResponse } from "src/types";
+import { ArtBoardLoader } from "./ArtBoardLoader";
 import {
   Container,
   Content,
@@ -9,13 +18,6 @@ import {
   TicketBox,
   Title,
 } from "./styled";
-import axios from "axios";
-import { Select } from "../../components/Select";
-import { artInitialData, Paths } from "../../constants";
-import { ArtBoardLoader } from "./ArtBoardLoader";
-import { useNavigate } from "react-router-dom";
-import notImage from "../../assets/icons/not_image.svg";
-import { FavoriteContext } from "../../context/FavoriteContext";
 
 export interface ArtBoardProps {
   title: string;
@@ -27,7 +29,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [artObject, setArtObject] = useState(artInitialData);
   const [selectSortData, setSelectSortData] = useState<string>("");
-
+  const { favoriteCards, removeFavoriteCards } = useContext(FavoriteContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,21 +40,24 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
         setArtObject(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     }
     getArts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const sortedData: ArtData[] = selectSort(selectSortData);
 
     setArtObject({ ...artObject, data: sortedData });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectSortData]);
 
-  const handleClickCard = (id: string) => {
+  const handleClickCard = useCallback((id: string) => {
     navigate(`${Paths.ArtPage}/${id}`);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const selectSort = (key: string) => {
     switch (key) {
@@ -94,29 +99,34 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
     setSelectSortData(data);
   };
 
-  const getImage = (art: ArtData) => {
-    return art.image_id !== null
-      ? `${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
-      : notImage;
-  };
+  const getImage = useCallback(
+    (art: ArtData) => {
+      return art.image_id !== null
+        ? `${artObject.config.iiif_url}/${art.image_id}/full/843,/0/default.jpg`
+        : notImage;
+    },
+    [artObject.config.iiif_url],
+  );
 
-  const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
-    useContext(FavoriteContext);
+  const getIsAdded = useCallback(
+    (id: string) => {
+      return favoriteCards.includes(id);
+    },
+    [favoriteCards],
+  );
 
-  const getIsAdded = (id: string) => {
-    return favoriteCards.includes(id);
-  };
-
-  const handleClickFavoriteButton =
+  const handleClickFavoriteButton = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
 
-      if (!getIsAdded(id)) {
-        addFavoriteCards(id);
-      } else {
-        removeFavoriteCards(id);
-      }
-    };
+      removeFavoriteCards(id);
+      setArtObject((prev) => ({
+        ...prev,
+        data: prev.data.filter((art) => art.id !== +id),
+      }));
+    },
+    [removeFavoriteCards],
+  );
 
   if (isLoading) {
     return <ArtBoardLoader />;
@@ -134,7 +144,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
       <TicketBox>
         {artObject.data.map((art: ArtData) => (
           <ArtTicket
-            key={art.image_id}
+            key={art.id}
             id={String(art.id)}
             image={getImage(art)}
             text={art.artwork_type_title}
@@ -142,7 +152,7 @@ export const ArtBoard = ({ title, subtitle, response }: ArtBoardProps) => {
             subtitle={art.department_title}
             onClick={handleClickCard}
             onClickFavoriteButton={handleClickFavoriteButton(String(art.id))}
-            getIsAdded={getIsAdded}
+            isAdded={getIsAdded(art.id.toString())}
           />
         ))}
       </TicketBox>

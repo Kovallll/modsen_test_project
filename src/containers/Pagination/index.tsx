@@ -1,16 +1,18 @@
+import { useState } from "react";
+
+import arrowNextIcon from "src/assets/icons/next_arrow.svg";
+import arrowPrevIcon from "src/assets/icons/prev_arrow.svg";
+import { paginationVisibleCount, paginationWidth } from "src/constants";
+import { PaginationLoader } from "./PaginationLoader";
 import {
   ArrowIcon,
+  Box,
   Container,
   NextButton,
   PageButton,
   PrevButton,
   Wrap,
 } from "./styled";
-import arrowNextIcon from "../../assets/icons/next_arrow.svg";
-import arrowPrevIcon from "../../assets/icons/prev_arrow.svg";
-import { useState } from "react";
-import { paginationVisibleCount, paginationWidth } from "../../constants";
-import { PaginationLoader } from "./PaginationLoader";
 
 export interface PaginationProps {
   currentPage: number;
@@ -54,14 +56,14 @@ export const Pagination = ({
       <PrevButton onClick={handleClickPrevButton}>
         <ArrowIcon src={arrowPrevIcon} />
       </PrevButton>
-      <div style={{ position: "relative", overflow: "hidden" }}>
-        <Container style={{ transform: `translateX(${xPosition}px)` }}>
+      <Box>
+        <Container xPosition={xPosition}>
           {paginationCount.map((number, index) => {
             if (index + 1 === currentPage) {
               return (
                 <PageButton
                   key={number}
-                  active={true}
+                  isActive={true}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}
@@ -71,7 +73,7 @@ export const Pagination = ({
               return (
                 <PageButton
                   key={number}
-                  active={false}
+                  isActive={false}
                   onClick={handleClickPaginationButton(index + 1)}
                 >
                   {number + 1}
@@ -79,7 +81,7 @@ export const Pagination = ({
               );
           })}
         </Container>
-      </div>
+      </Box>
       <NextButton onClick={handleClickNextButton}>
         <ArrowIcon src={arrowNextIcon} />
       </NextButton>

@@ -1,6 +1,16 @@
-import axios from "axios";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BASE_URL } from "../../constants";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+import favoritesIcon from "src/assets/icons/favorite.svg";
+import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
+import notImage from "src/assets/icons/not_image.svg";
+import { FavoritePageButton } from "src/components/FavoritePageButton";
+import { BASE_URL } from "src/constants";
+import { FavoriteContext } from "src/context/FavoriteContext";
+import { getArtDataResponse } from "src/types";
+import { ArtPageLoader } from "./ArtPageLoader";
 import {
   ArtImage,
   ArtInfo,
@@ -15,15 +25,7 @@ import {
   OverviewText,
   OverviewTitle,
 } from "./styled";
-import { getArtDataResponse } from "../../types";
-import { FavoriteButton } from "../../components/FavoritePageButton";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { ArtPageLoader } from "./ArtPageLoader";
-import notImage from "../../assets/icons/not_image.svg";
 import { YellowText } from "./YellowText";
-import favoritesIcon from "../../assets/icons/favorite.svg";
-import favoritesAddedIcon from "../../assets/icons/favorite_added.svg";
-import { FavoriteContext } from "../../context/FavoriteContext";
 
 const ArtPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,22 +34,27 @@ const ArtPage = () => {
 
   const { favoriteCards, addFavoriteCards, removeFavoriteCards } =
     useContext(FavoriteContext);
+
   useEffect(() => {
     setIsLoading(true);
     const getData = async () => {
       try {
         const { data } = await axios.get<getArtDataResponse>(
-          `${BASE_URL}/v1/artworks/${artId}`,
+          `${BASE_URL}/${artId}`,
         );
         setArtData(data);
         setIsLoading(false);
       } catch (error) {
-        console.error(error);
+        toast.error("Error receiving data!");
       }
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const isAdded = useMemo(() => favoriteCards.includes(artId), [favoriteCards]);
+  const isAdded = useMemo(
+    () => favoriteCards.includes(artId),
+    [artId, favoriteCards],
+  );
   const overviewData = [
     {
       text: "Artist nacionality: ",
@@ -89,7 +96,7 @@ const ArtPage = () => {
   return (
     <Container>
       <ImageWrap>
-        <FavoriteButton
+        <FavoritePageButton
           onClick={handleClickFavoriteButton}
           icon={
             <FavoriteArtPageIcon
@@ -113,10 +120,10 @@ const ArtPage = () => {
         </ArtInfo>
         <ArtOverview>
           <OverviewTitle>Overview</OverviewTitle>
-          {overviewData.map((overview) => (
-            <OverviewText key={overview.text}>
-              <YellowText>{overview.text}</YellowText>
-              {overview.data}
+          {overviewData.map(({ text, data }) => (
+            <OverviewText key={text}>
+              <YellowText>{text}</YellowText>
+              {data}
             </OverviewText>
           ))}
         </ArtOverview>
