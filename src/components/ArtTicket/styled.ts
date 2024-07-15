@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+
+const baseShadow = `
+  box-shadow: 1px 2px 6px -2px #777;
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -11,6 +15,7 @@ export const Container = styled.div`
   border: 1px solid #f0f1f1;
   padding: ${({ theme }) => `${theme.padding.xs} ${theme.padding.sm}`};
   cursor: pointer;
+  ${baseShadow}
   @media ${({ theme }) => theme.media.xs} {
     max-height: 120px;
     max-width: 350px;

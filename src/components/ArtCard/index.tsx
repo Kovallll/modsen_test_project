@@ -3,7 +3,7 @@ import React from "react";
 import favoritesIcon from "src/assets/icons/favorite.svg";
 import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
 import notImage from "src/assets/icons/not_image.svg";
-import { FavoriteButton } from "src/components/FavoriteCardButton";
+import { FavoriteCardButton } from "src/components/FavoriteCardButton";
 import {
   ArtIconButton,
   ArtImage,
@@ -44,19 +44,22 @@ const ArtCard = ({
 
   return (
     <Container onClick={handleClickCard}>
-      <ArtImage src={image.includes("null") ? notImage : image} />
+      <ArtImage src={image.includes("null") ? notImage : image} alt="image" />
       <ArtNote>
         <ArtInfo>
           <ArtTitle>{title}</ArtTitle>
           <ArtSubtitle>{subtitle}</ArtSubtitle>
           <ArtText>{text}</ArtText>
         </ArtInfo>
-        <FavoriteButton
+        <FavoriteCardButton
           onClick={(e) => {
             onClickFavoriteButton(e);
           }}
           icon={
-            <ArtIconButton src={isAdded ? favoritesAddedIcon : favoritesIcon} />
+            <ArtIconButton
+              src={isAdded ? favoritesAddedIcon : favoritesIcon}
+              alt="icon"
+            />
           }
         />
       </ArtNote>

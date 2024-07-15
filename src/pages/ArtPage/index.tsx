@@ -6,7 +6,7 @@ import axios from "axios";
 import favoritesIcon from "src/assets/icons/favorite.svg";
 import favoritesAddedIcon from "src/assets/icons/favorite_added.svg";
 import notImage from "src/assets/icons/not_image.svg";
-import { FavoriteButton } from "src/components/FavoritePageButton";
+import { FavoritePageButton } from "src/components/FavoritePageButton";
 import { BASE_URL } from "src/constants";
 import { FavoriteContext } from "src/context/FavoriteContext";
 import { getArtDataResponse } from "src/types";
@@ -96,7 +96,7 @@ const ArtPage = () => {
   return (
     <Container>
       <ImageWrap>
-        <FavoriteButton
+        <FavoritePageButton
           onClick={handleClickFavoriteButton}
           icon={
             <FavoriteArtPageIcon
